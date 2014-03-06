@@ -1,5 +1,5 @@
 import urllib2 as url
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 import sys
 import json
 
