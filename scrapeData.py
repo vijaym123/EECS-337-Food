@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import sys
 import json
 import re
+import difflib
 
 def getNutrients(soupBody):
 	nutrients = {}
@@ -24,7 +25,7 @@ def meatAndPoultry(name):
 				"Salt Beef","Cold cuts","Ham","Sausage", "Alligator","Bison","Frog",\
 				"Kangaroo","Lizard","Snake","Insects","Locust","Cricket","Honey Ant",\
 				"Grubs","Whale"]
-	return name in meatItems
+	return difflib.get_close_matches(name,meatItems)
 
 def getAllIngredient():
 	title = "http://en.wikibooks.org/wiki/"
@@ -46,26 +47,27 @@ def getAllTechniques():
 def getAllEquipments():
 	title = "http://en.wikibooks.org/wiki/"
 	page = url.urlopen(title+"Category:Equipment")
-	equipments = {}
 	if page:
 		soupBody = BeautifulSoup(page)
-		test = [(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})]
-		equipments["volume"] = test[:11]
-		equipments["weight"] = test[11:17]
-		equipments["length"] = test[17:21]
+		equipments = dict([(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})])
 	return equipments
 
 def getAllMeasurements():
 	title = "http://en.wikibooks.org/wiki/"
 	page = url.urlopen(title+"Cookbook:Units_of_measurement")
+	measurements = {}
 	if page:
 		soupBody = BeautifulSoup(page)
-		measurements = dict([])
+		test = [(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})]
+		measurements["volume"] = test[:11]
+		measurements["weight"] = test[11:17]
+		measurements["length"] = test[17:21]
+	return measurements
 
 def TypeOfPreparation(name):
 	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", \
 			"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry"]
-	return name in types
+	return difflib.get_close_matches(name,types)
 	
 def getRecipe(name):
 	page = url.urlopen("http://allrecipes.com/Recipe/"+name+"?scale=24&ismetric=0")
