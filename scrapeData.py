@@ -13,7 +13,23 @@ def getNutrients(soupBody):
 def getIngredients(soupBody):
 	return dict(zip([i.text for i in soupBody.findAll("span",{"id":"lblIngName"})],[ i.text for i in soupBody.findAll("span",{"id":"lblIngAmount"})]))
 
+def meatAndPoultry(name):
+	"""
+	Source wikipedia : http://en.wikibooks.org/wiki/Cookbook:Meat_and_poultry
+	"""
+	meatItems = ["Beef","Bison","Dog","Game","Bear","Venison","Wild Boar","Goat",\
+				"Horse","Lamb","Mutton","Pork","Rabbit","Turtle","Veal","Chicken", \
+				"Cornish Game Hen","Duck","Quail","Turkey","Ostrich","Goose","Bacon",\
+				"Salt Beef","Cold cuts","Ham","Sausage", "Alligator","Bison","Frog",\
+				"Kangaroo","Lizard","Snake","Insects","Locust","Cricket","Honey Ant",\
+				"Grubs","Whale"]
+	return name in meatItems
 
+def TypeOfPreparation(name):
+	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", \
+			"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry"]
+	return name in meatItems
+	
 def getRecipe(name):
 	page = url.urlopen("http://allrecipes.com/Recipe/"+name+"?scale=24&ismetric=0")
 	recipe = {}
