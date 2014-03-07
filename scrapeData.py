@@ -5,88 +5,95 @@ import json
 import re
 import difflib
 
-def getNutrients(soupBody):
-	nutrients = {}
-	for element in zip([i.find("li",{"class":"categories"}).text for i in soupBody.findAll("ul",{"id":"ulNutrient"})],\
-						   [i.find("li",{"class":"units"})for i in soupBody.findAll("ul",{"id":"ulNutrient"})]):
-		nutrients[element[0]] = (element[1].span.text, element[1].text[len(element[1].span.text):])
-	return nutrients
 
-def getIngredients(soupBody):
-	return dict(zip([i.text for i in soupBody.findAll("span",{"id":"lblIngName"})],[ i.text for i in soupBody.findAll("span",{"id":"lblIngAmount"})]))
 
-def meatAndPoultry(name):
-	"""
-	Source wikipedia : http://en.wikibooks.org/wiki/Cookbook:Meat_and_poultry
-	"""
+class Food:
 	meatItems = ["Beef","Bison","Dog","Game","Bear","Venison","Wild Boar","Goat",\
 				"Horse","Lamb","Mutton","Pork","Rabbit","Turtle","Veal","Chicken", \
 				"Cornish Game Hen","Duck","Quail","Turkey","Ostrich","Goose","Bacon",\
 				"Salt Beef","Cold cuts","Ham","Sausage", "Alligator","Bison","Frog",\
 				"Kangaroo","Lizard","Snake","Insects","Locust","Cricket","Honey Ant",\
 				"Grubs","Whale"]
-	return difflib.get_close_matches(name,meatItems)
-
-def getAllIngredient():
-	title = "http://en.wikibooks.org/wiki/"
-	page = url.urlopen(title+"Cookbook:Ingredients")
-	ingredients = {}
-	if page:
-		soupBody = BeautifulSoup(page)
-		ingredients = dict([(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})[1:-5]])
-	return ingredients
-
-def getAllTechniques():
-	title = "http://en.wikibooks.org/wiki/"
-	page = url.urlopen(title+"Cookbook:Cooking_techniques")
-	if page:
-		soupBody = BeautifulSoup(page)
-		techniques = dict([ (a.text,a["href"]) for ul in soupBody.findAll("ul")[2:13] for a in ul.findAll("a")])
-	return techniques
-
-def getAllEquipments():
-	title = "http://en.wikibooks.org/wiki/"
-	page = url.urlopen(title+"Category:Equipment")
-	if page:
-		soupBody = BeautifulSoup(page)
-		equipments = dict([(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})])
-	return equipments
-
-def getAllMeasurements():
-	title = "http://en.wikibooks.org/wiki/"
-	page = url.urlopen(title+"Cookbook:Units_of_measurement")
+	ingredients = []
+	techniques = []
+	equipments = []
 	measurements = {}
-	if page:
-		soupBody = BeautifulSoup(page)
-		test = [(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})]
-		measurements["volume"] = test[:11]
-		measurements["weight"] = test[11:17]
-		measurements["length"] = test[17:21]
-	return measurements
-
-def TypeOfPreparation(name):
 	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", \
-			"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry"]
-	return difflib.get_close_matches(name,types)
-	
-def getRecipe(name):
-	page = url.urlopen("http://allrecipes.com/Recipe/"+name+"?scale=24&ismetric=0")
+				"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry"]
+		
 	recipe = {}
-	if page:
-		soupBody = BeautifulSoup(page)
-		recipe["name"] = soupBody.find("h1",{"id":"itemTitle"}).text 
-		recipe["ingredients"] = getIngredients(soupBody)
-		recipe["directions"] = [i.text for i in soupBody.findAll("span",{"class":"plaincharacterwrap break"})]
-		recipe["prepTime"] = soupBody.find("time",{"id":"timePrep"})["datetime"][2:]
-		recipe["prepCook"] = soupBody.find("time",{"id":"timeCook"})["datetime"][2:]
-		recipe["prepTotal"] = soupBody.find("time",{"id":"timeTotal"})["datetime"][2:]
-		recipe["nutritions"] = getNutrients(soupBody)
-	return recipe
+	def __init__(self, name, serves = 12):
+		self.getAllIngredients()
+		self.getAllTechniques() 
+		self.getAllEquipments() 
+		self.getAllMeasurements()
+		self.getRecipe(name, serves)
 
-def Notes():
-	text = ["Meat can be replaced with varying degrees of success by tofu, tempeh, seitan, textured vegetable protein, vegetable or nut mixtures"]
+	def getNutrients(self, soupBody):
+		nutrients = {}
+		for element in zip([i.find("li",{"class":"categories"}).text for i in soupBody.findAll("ul",{"id":"ulNutrient"})],\
+							   [i.find("li",{"class":"units"})for i in soupBody.findAll("ul",{"id":"ulNutrient"})]):
+			nutrients[element[0]] = (element[1].span.text, element[1].text[len(element[1].span.text):])
+		return nutrients
+
+	def getIngredients(self, soupBody):
+		return dict(zip([i.text for i in soupBody.findAll("span",{"id":"lblIngName"})],[ i.text for i in soupBody.findAll("span",{"id":"lblIngAmount"})]))
+
+	def meatAndPoultry(self, name):
+		"""
+		Source wikipedia : http://en.wikibooks.org/wiki/Cookbook:Meat_and_poultry
+		Modify this to work on any given item.
+		"""
+		return difflib.get_close_matches(name,self.meatItems)
+
+	def getAllIngredients(self):
+		title = "http://en.wikibooks.org/wiki/"
+		page = url.urlopen(title+"Cookbook:Ingredients")
+		if page:
+			soupBody = BeautifulSoup(page)
+			self.ingredients = dict([(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})[1:-5]])
+
+	def getAllTechniques(self):
+		title = "http://en.wikibooks.org/wiki/"
+		page = url.urlopen(title+"Category:Cooking_techniques")
+		if page:
+			soupBody = BeautifulSoup(page)
+			self.techniques = dict([ (a.text[9:],a["href"]) for ul in soupBody.findAll("ul")[1:17] for a in ul.findAll("a")])
+
+	def getAllEquipments(self):
+		title = "http://en.wikibooks.org/wiki/"
+		page = url.urlopen(title+"Category:Equipment")
+		if page:
+			soupBody = BeautifulSoup(page)
+			self.equipments = dict([(a.text[9:],a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})])
+
+	def getAllMeasurements(self):
+		title = "http://en.wikibooks.org/wiki/"
+		page = url.urlopen(title+"Cookbook:Units_of_measurement")
+		if page:
+			soupBody = BeautifulSoup(page)
+			test = [(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})]
+			self.measurements["volume"] = dict(test[:11])
+			self.measurements["weight"] = dict(test[11:17])
+			self.measurements["length"] = dict(test[17:21])
+
+	def TypeOfPreparation(self, name):
+		return difflib.get_close_matches(name,self.types)
+		
+	def getRecipe(self, name, serves):
+		page = url.urlopen("http://allrecipes.com/Recipe/"+name+"?scale="+str(serves)+"&ismetric=0")
+		if page:
+			soupBody = BeautifulSoup(page)
+			self.recipe["name"] = soupBody.find("h1",{"id":"itemTitle"}).text 
+			self.recipe["ingredients"] = self.getIngredients(soupBody)
+			self.recipe["directions"] = [i.text for i in soupBody.findAll("span",{"class":"plaincharacterwrap break"})]
+			self.recipe["prepTime"] = soupBody.find("time",{"id":"timePrep"})["datetime"][2:]
+			self.recipe["prepCook"] = soupBody.find("time",{"id":"timeCook"})["datetime"][2:]
+			self.recipe["prepTotal"] = soupBody.find("time",{"id":"timeTotal"})["datetime"][2:]
+			self.recipe["nutritions"] = self.getNutrients(soupBody)
+
+	def Notes(self):
+		text = ["Meat can be replaced with varying degrees of success by tofu, tempeh, seitan, textured vegetable protein, vegetable or nut mixtures"]
 
 if __name__ == "__main__":
 	recipes = ["Worlds-Best-Lasagna","Banana-Pancakes-I"]
-	for i in recipes:
-		print getRecipe(i)
