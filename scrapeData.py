@@ -62,6 +62,11 @@ def getAllMeasurements():
 		soupBody = BeautifulSoup(page)
 		measurements = dict([])
 
+def TypeOfPreparation(name):
+	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", \
+			"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry"]
+	return name in types
+	
 def getRecipe(name):
 	page = url.urlopen("http://allrecipes.com/Recipe/"+name+"?scale=24&ismetric=0")
 	recipe = {}
