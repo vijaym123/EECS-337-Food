@@ -2,6 +2,7 @@ import urllib2 as url
 from bs4 import BeautifulSoup
 import sys
 import json
+import re
 
 def getNutrients(soupBody):
 	nutrients = {}
@@ -25,11 +26,42 @@ def meatAndPoultry(name):
 				"Grubs","Whale"]
 	return name in meatItems
 
-def TypeOfPreparation(name):
-	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", \
-			"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry"]
-	return name in meatItems
-	
+def getAllIngredient():
+	title = "http://en.wikibooks.org/wiki/"
+	page = url.urlopen(title+"Cookbook:Ingredients")
+	ingredients = {}
+	if page:
+		soupBody = BeautifulSoup(page)
+		ingredients = dict([(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})[1:-5]])
+	return ingredients
+
+def getAllTechniques():
+	title = "http://en.wikibooks.org/wiki/"
+	page = url.urlopen(title+"Cookbook:Cooking_techniques")
+	if page:
+		soupBody = BeautifulSoup(page)
+		techniques = dict([ (a.text,a["href"]) for ul in soupBody.findAll("ul")[2:13] for a in ul.findAll("a")])
+	return techniques
+
+def getAllEquipments():
+	title = "http://en.wikibooks.org/wiki/"
+	page = url.urlopen(title+"Category:Equipment")
+	equipments = {}
+	if page:
+		soupBody = BeautifulSoup(page)
+		test = [(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})]
+		equipments["volume"] = test[:11]
+		equipments["weight"] = test[11:17]
+		equipments["length"] = test[17:21]
+	return equipments
+
+def getAllMeasurements():
+	title = "http://en.wikibooks.org/wiki/"
+	page = url.urlopen(title+"Cookbook:Units_of_measurement")
+	if page:
+		soupBody = BeautifulSoup(page)
+		measurements = dict([])
+
 def getRecipe(name):
 	page = url.urlopen("http://allrecipes.com/Recipe/"+name+"?scale=24&ismetric=0")
 	recipe = {}
@@ -43,6 +75,9 @@ def getRecipe(name):
 		recipe["prepTotal"] = soupBody.find("time",{"id":"timeTotal"})["datetime"][2:]
 		recipe["nutritions"] = getNutrients(soupBody)
 	return recipe
+
+def Notes():
+	text = ["Meat can be replaced with varying degrees of success by tofu, tempeh, seitan, textured vegetable protein, vegetable or nut mixtures"]
 
 if __name__ == "__main__":
 	recipes = ["Worlds-Best-Lasagna","Banana-Pancakes-I"]
