@@ -4,8 +4,9 @@ import sys
 import json
 import re
 import difflib
-
-
+import nltk
+import fractions
+from collections import defaultdict
 
 class Food:
 	meatItems = ["Beef","Bison","Dog","Game","Bear","Venison","Wild Boar","Goat",\
@@ -20,6 +21,15 @@ class Food:
 	measurements = {}
 	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", \
 				"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry"]
+
+	posTags = dict([("CC","Coordinating conjunction"),("CD","Cardinal number"),("DT","Determiner"),("EX","Existential there"),("FW","Foreign word"),
+			("IN","Preposition or subordinating conjunction"),("JJ","Adjective"),("JJR","Adjective, comparative"),("JJS","Adjective, superlative"),
+			("LS","List item marker"),("MD","Modal"),("NN","Noun, singular or mass"),("NNS","Noun, plural"),("NNP","Proper noun, singular"),
+			("NNPS","Proper noun, plural"),("PDT","Predeterminer"),("POS","Possessive ending"),("PRP","Personal pronoun"),("PRP$","Possessive pronoun"),
+			("RB","Adverb"),("RBR","Adverb, comparative"),("RBS","Adverb, superlative"),("RP","Particle"),("SYM","Symbol"),("To","to"),("UH","Interjection"),
+			("VB","Verb, base form"),("VBD","Verb, past tense"),("VBG","Verb, gerund or present participle"),
+			("VBN","Verb, past participle"),("VBP","Verb, non-rd person singular present"),("VBZ","Verb, rd person singular present"),("WDT","Wh-determiner"),
+			("WP","Wh-pronoun"),("WP$","Possessive wh-pronoun"),("WRB","Wh-adverb")])
 		
 	recipe = {}
 	def __init__(self, name, serves = 12):
@@ -36,8 +46,43 @@ class Food:
 			nutrients[element[0]] = (element[1].span.text, element[1].text[len(element[1].span.text):])
 		return nutrients
 
+	def labelIngredients(self, ingredientText, amountText):
+		"""
+		amount = number + measurement
+		ingredient = descriptor + preparation + item
+		"""
+		tokens = nltk.word_tokenize(ingredientText.replace(",",""))
+		tags = nltk.pos_tag(tokens)
+		label = defaultdict(list)
+		label["ingredient"] = ingredientText
+		for i in tags:
+			print i
+			if i[1].startswith("JJ"):
+				label["descriptor"].append(i[0])
+			elif i[1].startswith("RB") or i[1].startswith("VB"):
+				label["preparation"].append(i[0])
+			else:
+				label["item"].append(i[0])
+
+		label["descriptor"] = " ".join(label["descriptor"])
+		label["preparation"] = " ".join(label["preparation"])
+		label["item"] = " ".join(label["item"])
+		
+		tokens = nltk.word_tokenize(amountText.replace(",",""))
+		label["amount"] = amountText
+		label["number"] = 0
+		label["measurement"] = []
+		for i in tokens:
+			try:
+				label["number"] +=  float(fractions.Fraction(i))
+			except ValueError:
+				label["measurement"].append(i)
+		label["measurement"] = " ".join(label["measurement"])
+		return dict(label) 
+
 	def getIngredients(self, soupBody):
-		return dict(zip([i.text for i in soupBody.findAll("span",{"id":"lblIngName"})],[ i.text for i in soupBody.findAll("span",{"id":"lblIngAmount"})]))
+		iterator = zip([i.text for i in soupBody.findAll("span",{"id":"lblIngName"})],[ i.text for i in soupBody.findAll("span",{"id":"lblIngAmount"})])
+		return [self.labelIngredients(item[0],item[1]) for item in iterator]
 
 	def meatAndPoultry(self, name):
 		"""
