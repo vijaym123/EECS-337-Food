@@ -7,12 +7,13 @@ import difflib
 import nltk
 import fractions
 from collections import defaultdict
+import wikipedia
 
 class FoodResources:
 	meatItems = ["Beef","Bison","Dog","Game","Bear","Venison","Wild Boar","Goat",\
-				"Horse","Lamb","Mutton","Pork","Rabbit","Turtle","Veal","Chicken", \
+				"Horse","Lamb","Mutton","Fish","Pork","Rabbit","Turtle","Veal","Chicken", \
 				"Cornish Game Hen","Duck","Quail","Turkey","Ostrich","Goose","Bacon",\
-				"Salt Beef","Cold cuts","Ham","Sausage", "Alligator","Bison","Frog",\
+				"Cold cuts","Ham","Sausage", "Alligator","Bison","Frog",\
 				"Kangaroo","Lizard","Snake","Insects","Locust","Cricket","Honey Ant",\
 				"Grubs","Whale"]
 	ingredients = []
@@ -36,6 +37,7 @@ class FoodResources:
 		self.getAllTechniques() 
 		self.getAllEquipments() 
 		self.getAllMeasurements()
+		self.meatItems = [i.lower() for i in self.meatItems]
 
 	def getAllIngredients(self):
 		title = "http://en.wikibooks.org/wiki/"
@@ -75,6 +77,21 @@ class Food:
 	def __init__(self, name, serves = 12):
 		self.getRecipe(name, serves)
 		self.resource = FoodResources()
+
+	def getSummary(self, topic):
+		return wikipedia.summary(topic).replace(",","").replace(".","").lower().split(" ")
+
+	def isMeat(self, name):
+		"""
+		Source wikipedia : http://en.wikibooks.org/wiki/Cookbook:Meat_and_poultry
+		Modify this to work on any given item.
+		"""
+		if name.lower() in self.resource.meatItems:
+			return True
+		elif any([ i.lower() in self.resource.meatItems for i in self.getSummary(name)]):
+			return True
+		else:
+			return False
 
 	def getNutrients(self, soupBody):
 		nutrients = {}
@@ -119,13 +136,6 @@ class Food:
 	def getIngredients(self, soupBody):
 		iterator = zip([i.text for i in soupBody.findAll("span",{"id":"lblIngName"})],[ i.text for i in soupBody.findAll("span",{"id":"lblIngAmount"})])
 		return [self.labelIngredients(item[0],item[1]) for item in iterator]
-
-	def meatAndPoultry(self, name):
-		"""
-		Source wikipedia : http://en.wikibooks.org/wiki/Cookbook:Meat_and_poultry
-		Modify this to work on any given item.
-		"""
-		return difflib.get_close_matches(name, self.resource.meatItems)
 
 	def TypeOfPreparation(self, name):
 		return difflib.get_close_matches(name, self.resource.types)
