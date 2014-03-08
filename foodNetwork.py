@@ -55,6 +55,7 @@ def getAllIngredients():
 
 if __name__ == "__main__":
 	number = 1
+	maxNumber = 30
 	page = url.urlopen("http://allrecipes.com/recipes/breakfast-and-brunch/main.aspx?evt19=1&vm=l&p34=HR_ListView&Page="+str(number))
 	recipeNames = []
 	
@@ -62,11 +63,12 @@ if __name__ == "__main__":
 	ingredientsBook = getAllIngredients()
 
 	while page:
+		print number
 		soupBody = BeautifulSoup(page)
 		recipeNames.extend([ (i.find('a').text, { "url" : i.find('a')["href"], "recipe" : getIngredients(i.find('a')["href"]) }) for i in soupBody.findAll('h3',{"class":"resultTitle"})])
 		number = number + 1
 		page = url.urlopen("http://allrecipes.com/recipes/breakfast-and-brunch/main.aspx?evt19=1&vm=l&p34=HR_ListView&Page="+str(number))
-		if number == 5:
+		if number >= maxNumber:
 			break
 	data = dict(recipeNames)
 	print data
