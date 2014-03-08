@@ -31,6 +31,47 @@ class FoodResources:
 			("VB","Verb, base form"),("VBD","Verb, past tense"),("VBG","Verb, gerund or present participle"),
 			("VBN","Verb, past participle"),("VBP","Verb, non-rd person singular present"),("VBZ","Verb, rd person singular present"),("WDT","Wh-determiner"),
 			("WP","Wh-pronoun"),("WP$","Possessive wh-pronoun"),("WRB","Wh-adverb")])
+	
+	# meatReplace = {
+	# 	"Beef" : ["seitan","mushroom sause","panner","rice cheese"],
+	# 	"Bison" : ["seitan"],
+	# 	"Dog" : ["seitan", "textured potato slices"],
+	# 	"Game" : ["Stuffed potato", "Stuffed egg"] ,
+	# 	"Bear" : ["",""],
+	# 	"Venison",
+	# 	"Wild Boar",
+	# 	"Goat",
+	# 	"Horse",
+	# 	"Lamb" : ,
+	# 	"Mutton" : ["seitan"],
+	# 	"Fish" : ["tofu","walnuts","peanuts"],
+	# 	"Pork" : ["tofu"],
+	# 	"Rabbit",
+	# 	"Turtle",
+	# 	"Veal",
+	# 	"Chicken" : ["tofu"],
+	# 	"Cornish Game Hen",
+	# 	"Duck" : ["mush"],
+	# 	"Quail" ,
+	# 	"Turkey" : ["tofu turkey"],
+	# 	"Ostrich" ,
+	# 	"Goose" ,
+	# 	"Bacon" : ["fake bacon bits"],
+	# 	"Cold cuts" : ["tofu deli",
+	# 	"Ham" : ["smoke flavoring","texture"],
+	# 	"Sausage" : ["tofu Sausage"], 
+	# 	"Alligator",
+	# 	"Bison" ,
+	# 	"Frog" ,
+	# 	"Kangaroo" : ["tofu turkey"],
+	# 	"Lizard",
+	# 	"Snake",
+	# 	"Insects" : ["deep fried onions"],
+	# 	"Locust",
+	# 	"Cricket",
+	# 	"Honey Ant",
+	# 	"Grubs" : ,
+	# 	"Whale" : ["seaten", "mushroom sause"]}
 
 	def __init__(self):
 		self.getAllIngredients()
@@ -74,10 +115,10 @@ class Food:
 	recipe = {}
 	resource = None
 	tools = []
-	
+
 	def __init__(self, name, serves = 12):
-		self.getRecipe(name, serves)
 		self.resource = FoodResources()
+		self.getRecipe(name, serves)
 		self.getTools()
 
 	def getSummary(self, topic):
@@ -112,17 +153,22 @@ class Food:
 		amount = number + measurement
 		ingredient = descriptor + preparation + item
 		"""
-		tokens = nltk.word_tokenize(ingredientText.replace(",",""))
+		ingredientText=ingredientText.replace(",","")
+		tokens = nltk.word_tokenize(ingredientText)
 		tags = nltk.pos_tag(tokens)
 		label = defaultdict(list)
 		label["ingredient"] = ingredientText
-		for i in tags:
-			if i[1].startswith("JJ"):
-				label["descriptor"].append(i[0])
-			elif i[1].startswith("RB") or i[1].startswith("VB"):
-				label["preparation"].append(i[0])
-			else:
-				label["item"].append(i[0])
+
+		if difflib.get_close_matches(ingredientText, self.resource.ingredients.keys()):
+			label["item"].append(ingredientText)
+		else:
+			for i in tags:
+				if i[1].startswith("JJ"):
+					label["descriptor"].append(i[0])
+				elif i[1].startswith("RB") or i[1].startswith("VB"):
+					label["preparation"].append(i[0])
+				else :
+					label["item"].append(i[0])
 
 		label["descriptor"] = " ".join(label["descriptor"])
 		label["preparation"] = " ".join(label["preparation"])

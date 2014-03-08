@@ -2,62 +2,75 @@ import urllib2 as url
 from bs4 import BeautifulSoup
 import sys
 import json
+import nltk
+from collections import defaultdict
 import re
 import difflib
-import nltk
-import fractions
-from collections import defaultdict
-import wikipedia
 
-
-recipesData = []
-
-def labelIngredients(ingredientText, amountText):
+def getItems(ingredientText):
 	"""
-	amount = number + measurement
 	ingredient = descriptor + preparation + item
 	"""
-	tokens = nltk.word_tokenize(ingredientText.replace(",",""))
+	global ingredientsBook
+
+	ingredientText=ingredientText.replace(",","")
+	tokens = nltk.word_tokenize(ingredientText)
 	tags = nltk.pos_tag(tokens)
 	label = defaultdict(list)
 	label["ingredient"] = ingredientText
-	for i in tags:
-		if i[1].startswith("JJ"):
-			label["descriptor"].append(i[0])
-		elif i[1].startswith("RB") or i[1].startswith("VB"):
-			label["preparation"].append(i[0])
-		else:
-			label["item"].append(i[0])
+
+	if difflib.get_close_matches(ingredientText, ingredientsBook):
+		label["item"].append(ingredientText)
+	else:
+		for i in tags:
+			if i[1].startswith("JJ"):
+				label["descriptor"].append(i[0])
+			elif i[1].startswith("RB") or i[1].startswith("VB"):
+				label["preparation"].append(i[0])
+			else :
+				label["item"].append(i[0])
 
 	label["descriptor"] = " ".join(label["descriptor"])
 	label["preparation"] = " ".join(label["preparation"])
 	label["item"] = " ".join(label["item"])
-	
-	tokens = nltk.word_tokenize(amountText.replace(",",""))
-	label["amount"] = amountText
-	label["number"] = 0
-	label["measurement"] = []
-	for i in tokens:
-		try:
-			label["number"] +=  float(fractions.Fraction(i))
-		except ValueError:
-			label["measurement"].append(i)
-	label["measurement"] = " ".join(label["measurement"])
-	return dict(label) 
+	# if label["item"] == '':
+	# 	print label['descriptor'],"----",label['preparation'],"----",label['ingredient'] 
+	return label["item"]
 
-def getIngredients(soupBody):
-	iterator = zip([i.text for i in soupBody.findAll("span",{"id":"lblIngName"})],[ i.text for i in soupBody.findAll("span",{"id":"lblIngAmount"})])
-	return [labelIngredients(item[0],item[1]) for item in iterator]
+def getIngredients(link):
+	page = url.urlopen(str(link))
+	soupBody = BeautifulSoup(page)
+	items = [ getItems(i.text) for i in soupBody.findAll("span",{"id":"lblIngName"})]
+	while items.count('')!=0:
+		items.remove('')
+	return items
 
-def main():
+def getAllIngredients():
+	title = "http://en.wikibooks.org/wiki/"
+	page = url.urlopen(title+"Cookbook:Ingredients")
+	if page:
+		soupBody = BeautifulSoup(page)
+		ingredients = dict([(a.text,a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})[1:-5]])
+	return ingredients.keys()
+
+if __name__ == "__main__":
 	number = 1
 	page = url.urlopen("http://allrecipes.com/recipes/breakfast-and-brunch/main.aspx?evt19=1&vm=l&p34=HR_ListView&Page="+str(number))
 	recipeNames = []
+	
+	global ingredientsBook
+	ingredientsBook = getAllIngredients()
+
 	while page:
 		soupBody = BeautifulSoup(page)
-		recipeNames.extend([ (i.find('a').text, i.find('a')["href"]) for i in soupBody.findAll('h3',{"class":"resultTitle"})])
+		recipeNames.extend([ (i.find('a').text, { "url" : i.find('a')["href"], "recipe" : getIngredients(i.find('a')["href"]) }) for i in soupBody.findAll('h3',{"class":"resultTitle"})])
 		number = number + 1
 		page = url.urlopen("http://allrecipes.com/recipes/breakfast-and-brunch/main.aspx?evt19=1&vm=l&p34=HR_ListView&Page="+str(number))
-		if number == 20:
+		if number == 5:
 			break
-	return dict(recipeNames)
+	data = dict(recipeNames)
+	print data
+	filename = "breakfast-and-brunch.data"
+	f = open(filename,"w")
+	f.write(json.dumps(data))
+	f.close()
