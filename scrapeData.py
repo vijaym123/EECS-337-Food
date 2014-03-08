@@ -73,10 +73,12 @@ class FoodResources:
 class Food:
 	recipe = {}
 	resource = None
-
+	tools = []
+	
 	def __init__(self, name, serves = 12):
 		self.getRecipe(name, serves)
 		self.resource = FoodResources()
+		self.getTools()
 
 	def getSummary(self, topic):
 		return wikipedia.summary(topic).replace(",","").replace(".","").lower().split(" ")
@@ -92,6 +94,11 @@ class Food:
 			return True
 		else:
 			return False
+
+	def getTools(self):
+		for step in self.recipe["directions"]:
+			self.tools.extend([i for i in self.resource.equipments if i!='' and i.lower() in step.lower()])
+		self.tools = list(set(self.tools))
 
 	def getNutrients(self, soupBody):
 		nutrients = {}
