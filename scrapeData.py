@@ -39,7 +39,7 @@ class FoodResources:
 				'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'],
 				'Seitan' : ['chicken']}
 	
-	glutenDict = [['Cornmeal', ['flour', 'pancake mix']], ['Corn Tortilla', ['bread', 'toast', 'tortilla', 'pita']], ['Zucchini', ['lasagna noodle', 'lasagna noodles']], ['Spaghetti Squash', ['spaghetti]']], ['Rice Noodles', ['pasta', 'noodles']], ['Gluten-Free Beer', ['beer', 'ale']], ["Cashews", ['crouton', 'croutons']], ['Gluten-Free Soy Sauce', ['soy sauce']], ['Tofu', ['seitan']] ]
+	glutenDict = [['Cornmeal', ['flour', 'pancake mix']], ['Corn Tortilla', ['bread', 'toast', 'tortilla', 'pita']], ['Zucchini Ribbons', ['lasagna noodle', 'lasagna noodles']], ['Spaghetti Squash', ['spaghetti]']], ['Rice Noodles', ['pasta', 'noodles']], ['Gluten-Free Beer', ['beer', 'ale']], ["Cashews", ['crouton', 'croutons']], ['Gluten-Free Soy Sauce', ['soy sauce']], ['Tofu', ['seitan']] ]
 
 	glutenItems = ["flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
 
@@ -254,11 +254,11 @@ class Food:
 
 	def glutenReplace(self):
 		for item in self.recipe["ingredients"]:
-			#print item["item"]
 			if self.hasGluten(item["item"]):
-				print item["item"]
-				print "Replace with: "
-				print self.findGlutenReplacer(item["item"])
+				replacer = self.findGlutenReplacer(item["item"])
+				print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
+				item["item"] = replacer
+				item["number"] = self.serving
 
 	def findGlutenReplacer(self, name):
 		for replacement in self.resource.glutenDict:
@@ -288,7 +288,7 @@ class Food:
 
 if __name__ == "__main__":
 	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I","Creamy-Banana-Bread"]
-	k=Food(recipes[0])
+	k=Food(recipes[3])
 	#k.meatReplace()
 	k.glutenReplace()
 
