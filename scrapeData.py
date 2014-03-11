@@ -172,7 +172,7 @@ class Food:
 		regex=re.compile('[%s]' % re.escape(pun))
 		return regex.sub("",stringS)
 
-	def getPrimaryCookingMethod(self):
+	def getPrimaryCookingMethods(self):
 		tokens = [w.lower() for w in nltk.word_tokenize(self.removePuncuations(" ".join([str(i).lower() for i in self.recipe["directions"]]))) if not w in nltk.corpus.stopwords.words()]
 		tags = nltk.pos_tag(tokens)
 		tokens = []
@@ -265,4 +265,4 @@ class Food:
 if __name__ == "__main__":
 	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I"]
 	k=Food(recipes[0])
-	k.getPrimaryCookingMethod()
+	k.getPrimaryCookingMethods()
