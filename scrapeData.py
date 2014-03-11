@@ -39,6 +39,10 @@ class FoodResources:
 				'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'],
 				'Seitan' : ['chicken']}
 	
+	glutenDict = [['Cornmeal', ['flour', 'pancake mix']], ['Corn Tortilla', ['bread', 'toast', 'tortilla', 'pita']], ['Zucchini', ['lasagna noodle', 'lasagna noodles']], ['Spaghetti Squash', ['spaghetti]']], ['Rice Noodles', ['pasta', 'noodles']], ['Gluten-Free Beer', ['beer', 'ale']], ["Cashews", ['crouton', 'croutons']], ['Gluten-Free Soy Sauce', ['soy sauce']], ['Tofu', ['seitan']] ]
+
+	glutenItems = ["flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
+
 	# meatReplace = {
 	# 	"Beef" : ["seitan","mushroom sause","panner","rice cheese"],
 	# 	"Bison" : ["seitan"],
@@ -228,10 +232,48 @@ class Food:
 					return replacement
 		return "Tofu"
 
+	def glutenReplace(self):
+		for item in self.recipe["ingredients"]:
+			#print item["item"]
+			if self.hasGluten(item["item"]):
+				print item["item"]
+				print "Replace with: "
+				print self.findGlutenReplacer(item["item"])
+
+	def findGlutenReplacer(self, name):
+		for replacement in self.resource.glutenDict:
+			for keyword in replacement[1]:
+				if keyword == name:
+					return replacement[0]
+
+	
+	def hasGluten(self, name):
+		"""
+		Source wikipedia : http://en.wikibooks.org/wiki/Cookbook:Meat_and_poultry
+		Modify this to work on any given item.
+		"""
+		try :
+			if any([ i in self.resource.glutenItems for i in name.split(" ")]):
+				return True
+			elif any([ i.lower() in self.resource.glutenItems for i in self.getSummary(name)]):
+				return True
+			else:
+				for i in self.resource.glutenItems:
+					if name == i:
+						return True
+				return False
+		except :
+			return False
+
 	def Notes(self):
 		text = ["Meat can be replaced with varying degrees of success by tofu, tempeh, seitan, textured vegetable protein, vegetable or nut mixtures"]
 
 if __name__ == "__main__":
 	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I"]
-	k=Food(recipes[1])
+	k=Food(recipes[2])
 	k.meatReplace()
+	k.glutenReplace()
+
+
+
+
