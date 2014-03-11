@@ -33,7 +33,7 @@ class FoodResources:
 			("WP","Wh-pronoun"),("WP$","Possessive wh-pronoun"),("WRB","Wh-adverb")])
 
 	vegDict = {'Tofu' : ['sauce', 'soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
-			    'Mashed Chickpeas' : ['fish', 'seafood'], 
+			    'Mashed Chickpeas' : ['fish', 'seafood'],
 				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'filet', 'meatloaf'], 
 				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich'], 
 				'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'],
@@ -42,6 +42,17 @@ class FoodResources:
 	glutenDict = [['Cornmeal', ['flour', 'pancake mix']], ['Corn Tortilla', ['bread', 'toast', 'tortilla', 'pita']], ['Zucchini Ribbons', ['lasagna noodle', 'lasagna noodles']], ['Spaghetti Squash', ['spaghetti]']], ['Rice Noodles', ['pasta', 'noodles']], ['Gluten-Free Beer', ['beer', 'ale']], ["Cashews", ['crouton', 'croutons']], ['Gluten-Free Soy Sauce', ['soy sauce']], ['Tofu', ['seitan']] ]
 
 	glutenItems = ["flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
+
+	americanDict = [['Cheddar cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']]]
+
+	americanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']
+
+	veryAmericanDict = [['String cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']]]
+
+	veryAmericanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']
+
+	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict}
+	conversionChecks = {'american' : americanItems, 'vamerican' : veryAmericanItems}
 
 	# meatReplace = {
 	# 	"Beef" : ["seitan","mushroom sause","panner","rice cheese"],
@@ -283,14 +294,47 @@ class Food:
 		except :
 			return False
 
+
+	def convertCuisine(self, conversion): 
+		for item in self.recipe["ingredients"]:
+			if self.shouldBeConverted(item["item"], conversion):
+				replacer = self.findConversion(item["item"], conversion)
+				if replacer.lower() == 'string cheese':
+					item["number"] = 20*item["number"]
+					item["measurement"] = "sticks"
+				print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
+				item["item"] = replacer
+				item["number"] = self.serving
+				
+
+	def findConversion(self, name, dictChoice):
+		for replacement in self.resource.conversionCollections[dictChoice]:
+			print replacement[0]
+			for keyword in replacement[1]:
+				if keyword == name:
+					return replacement[0]
+
+	def shouldBeConverted(self, name, checkChoice):
+		try :
+			if any([ i in self.resource.conversionChecks[checkChoice] for i in name.split(" ")]):
+				return True
+			else:
+				for i in self.resource.conversionChecks[checkChoice]:
+					if name == i:
+						return True
+				return False
+		except :
+			return False
+
+
 	def Notes(self):
 		text = ["Meat can be replaced with varying degrees of success by tofu, tempeh, seitan, textured vegetable protein, vegetable or nut mixtures"]
 
 if __name__ == "__main__":
 	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I","Creamy-Banana-Bread"]
-	k=Food(recipes[3])
+	k=Food("Worlds-Best-Lasagna")
 	#k.meatReplace()
-	k.glutenReplace()
+	k.convertCuisine('vamerican')
 
 
 
