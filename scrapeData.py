@@ -39,12 +39,27 @@ class FoodResources:
 			("WP","Wh-pronoun"),("WP$","Possessive wh-pronoun"),("WRB","Wh-adverb")])
 
 	vegDict = {'Tofu' : ['sauce', 'soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
-			    'Mashed Chickpeas' : ['fish', 'seafood'], 
+			    'Mashed Chickpeas' : ['fish', 'seafood'],
 				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'filet', 'meatloaf'], 
 				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich'], 
 				'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'],
 				'Seitan' : ['chicken']}
 	
+	glutenDict = [['Cornmeal', ['flour', 'pancake mix']], ['Corn Tortilla', ['bread', 'toast', 'tortilla', 'pita']], ['Zucchini Ribbons', ['lasagna noodle', 'lasagna noodles']], ['Spaghetti Squash', ['spaghetti]']], ['Rice Noodles', ['pasta', 'noodles']], ['Gluten-Free Beer', ['beer', 'ale']], ["Cashews", ['crouton', 'croutons']], ['Gluten-Free Soy Sauce', ['soy sauce']], ['Tofu', ['seitan']] ]
+
+	glutenItems = ["flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
+
+	americanDict = [['Cheddar cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']]]
+
+	americanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']
+
+	veryAmericanDict = [['String cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']]]
+
+	veryAmericanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']
+
+	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict}
+	conversionChecks = {'american' : americanItems, 'vamerican' : veryAmericanItems}
+
 	# meatReplace = {
 	# 	"Beef" : ["seitan","mushroom sause","panner","rice cheese"],
 	# 	"Bison" : ["seitan"],
@@ -130,8 +145,9 @@ class Food:
 	recipe = {}
 	resource = None
 	tools = []
+	serving = 12
 
-	def __init__(self, name, serves = 12):
+	def __init__(self, name, serves = serving):
 		self.resource = FoodResources()
 		self.getRecipe(name, serves)
 		self.getTools()
@@ -147,8 +163,8 @@ class Food:
 		try :
 			if any([ i in self.resource.meatItems for i in name.split(" ")]):
 				return True
-			elif any([ i.lower() in self.resource.meatItems for i in self.getSummary(name)]):
-				return True
+			#elif any([ i.lower() in self.resource.meatItems for i in self.getSummary(name)]):
+			#	return True
 			else:
 				return False
 		except :
@@ -250,7 +266,26 @@ class Food:
 	def meatReplace(self):
 		for item in self.recipe["ingredients"]:
 			if self.isMeat(item["item"]):
-				print item["item"]," Replace with : ", self.findVegReplacer(item["item"])
+				replacer = self.findVegReplacer(item["item"])
+				replacer = self.alreadyThere(replacer)
+				if replacer in "Portobello Mushroom":
+					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, replacer, "(s)"
+					item["item"] = replacer
+					item["measurement"] = ""
+					item["number"] = self.serving
+				else:
+					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", item["number"], item["measurement"], replacer
+					item["item"] = replacer
+					item["number"] = self.serving
+
+	def alreadyThere(self, newThing):
+		for item in self.recipe["ingredients"]:
+			if newThing in item["item"]:
+				if newThing in "Eggplant":
+					return "Zucchini"
+				#ADD MORE FALLBACKS HERE
+		return newThing
+
 	
 	def findVegReplacer(self, name):
 		for replacement in self.resource.vegDict.keys():
@@ -259,6 +294,70 @@ class Food:
 					return replacement
 		return "Tofu"
 
+	def glutenReplace(self):
+		for item in self.recipe["ingredients"]:
+			if self.hasGluten(item["item"]):
+				replacer = self.findGlutenReplacer(item["item"])
+				print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
+				item["item"] = replacer
+				item["number"] = self.serving
+
+	def findGlutenReplacer(self, name):
+		for replacement in self.resource.glutenDict:
+			for keyword in replacement[1]:
+				if keyword == name:
+					return replacement[0]
+
+	
+	def hasGluten(self, name):
+		"""
+		Source wikipedia : http://en.wikibooks.org/wiki/Cookbook:Meat_and_poultry
+		Modify this to work on any given item.
+		"""
+		try :
+			if any([ i in self.resource.glutenItems for i in name.split(" ")]):
+				return True
+			else:
+				for i in self.resource.glutenItems:
+					if name == i:
+						return True
+				return False
+		except :
+			return False
+
+
+	def convertCuisine(self, conversion): 
+		for item in self.recipe["ingredients"]:
+			if self.shouldBeConverted(item["item"], conversion):
+				replacer = self.findConversion(item["item"], conversion)
+				if replacer.lower() == 'string cheese':
+					item["number"] = 20*item["number"]
+					item["measurement"] = "sticks"
+				print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
+				item["item"] = replacer
+				item["number"] = self.serving
+				
+
+	def findConversion(self, name, dictChoice):
+		for replacement in self.resource.conversionCollections[dictChoice]:
+			print replacement[0]
+			for keyword in replacement[1]:
+				if keyword == name:
+					return replacement[0]
+
+	def shouldBeConverted(self, name, checkChoice):
+		try :
+			if any([ i in self.resource.conversionChecks[checkChoice] for i in name.split(" ")]):
+				return True
+			else:
+				for i in self.resource.conversionChecks[checkChoice]:
+					if name == i:
+						return True
+				return False
+		except :
+			return False
+
+
 	def Notes(self):
 		text = ["Meat can be replaced with varying degrees of success by tofu, tempeh, seitan, textured vegetable protein, vegetable or nut mixtures"]
 
@@ -266,3 +365,7 @@ if __name__ == "__main__":
 	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I"]
 	k=Food(recipes[0])
 	k.getPrimaryCookingMethods()
+	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I","Creamy-Banana-Bread"]
+	k=Food("Worlds-Best-Lasagna")
+	#k.meatReplace()
+	k.convertCuisine('vamerican')
