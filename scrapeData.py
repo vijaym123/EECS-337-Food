@@ -126,8 +126,9 @@ class Food:
 	recipe = {}
 	resource = None
 	tools = []
+	serving = 12
 
-	def __init__(self, name, serves = 12):
+	def __init__(self, name, serves = serving):
 		self.resource = FoodResources()
 		self.getRecipe(name, serves)
 		self.getTools()
@@ -143,8 +144,8 @@ class Food:
 		try :
 			if any([ i in self.resource.meatItems for i in name.split(" ")]):
 				return True
-			elif any([ i.lower() in self.resource.meatItems for i in self.getSummary(name)]):
-				return True
+			#elif any([ i.lower() in self.resource.meatItems for i in self.getSummary(name)]):
+			#	return True
 			else:
 				return False
 		except :
@@ -223,7 +224,26 @@ class Food:
 	def meatReplace(self):
 		for item in self.recipe["ingredients"]:
 			if self.isMeat(item["item"]):
-				print item["item"]," Replace with : ", self.findVegReplacer(item["item"])
+				replacer = self.findVegReplacer(item["item"])
+				replacer = self.alreadyThere(replacer)
+				if replacer in "Portobello Mushroom":
+					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, replacer, "(s)"
+					item["item"] = replacer
+					item["measurement"] = ""
+					item["number"] = self.serving
+				else:
+					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", item["number"], item["measurement"], replacer
+					item["item"] = replacer
+					item["number"] = self.serving
+
+	def alreadyThere(self, newThing):
+		for item in self.recipe["ingredients"]:
+			if newThing in item["item"]:
+				if newThing in "Eggplant":
+					return "Zucchini"
+				#ADD MORE FALLBACKS HERE
+		return newThing
+
 	
 	def findVegReplacer(self, name):
 		for replacement in self.resource.vegDict.keys():
