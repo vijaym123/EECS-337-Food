@@ -8,6 +8,7 @@ import nltk
 import fractions
 from collections import defaultdict
 import wikipedia
+import string
 
 class FoodResources:
 	meatItems = ["Beef","Bison","Dog","Game","Bear","Venison","Wild Boar","Goat",\
@@ -15,13 +16,18 @@ class FoodResources:
 				"Cornish Game Hen","Duck","Quail","Turkey","Ostrich","Goose","Bacon",\
 				"Cold cuts","Ham","Sausage", "Alligator","Bison","Frog",\
 				"Kangaroo","Lizard","Snake","Insects","Locust","Cricket","Honey Ant",\
-				"Grubs","Whale"]
+				"Grubs","Whale", "Pepperoni"]
 	ingredients = []
-	techniques = []
+	techniques = ["Microwave", "Scald", "Poach", "Broil", "Dice", "Soak", "Beaten", "Caramelization", \
+				"Parboil", "Pan broil", "Thermal", "Steam", "Fold", "Roll", "Stew", "Saut", "Roast", \
+				"Barbecue", "Beat", "Pressure", "Pickling", "Freeze", "Bast", "Slice", "Boil", "Shirring", \
+				"Batter", "Fermentation", "Backyard Grill", "Boiled", "Fry", "Pure", "Toast", "Temper", "Deep Fat Fry", \
+				"Roast", "Bake", "Stir-fry", "Scald", "Chiffonade", "Brown", "Mix", "Sweat", "Smoke", "Blanch", "Canning", \
+				"Boiling", "Mincing", "Braising", "Grill", "Knead", "Barbecue", "Clay pot", "Simmering", "Microwave", "Pan Fry", "Degorg", "Deglaz"]
 	equipments = []
 	measurements = {}
 	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", \
-				"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry"]
+				"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry", "Grill"]
 	
 	posTags = dict([("CC","Coordinating conjunction"),("CD","Cardinal number"),("DT","Determiner"),("EX","Existential there"),("FW","Foreign word"),
 			("IN","Preposition or subordinating conjunction"),("JJ","Adjective"),("JJR","Adjective, comparative"),("JJS","Adjective, superlative"),
@@ -97,9 +103,11 @@ class FoodResources:
 	def getAllTechniques(self):
 		title = "http://en.wikibooks.org/wiki/"
 		page = url.urlopen(title+"Category:Cooking_techniques")
-		if page:
-			soupBody = BeautifulSoup(page)
-			self.techniques = dict([ (a.text[9:],a["href"]) for ul in soupBody.findAll("ul")[1:17] for a in ul.findAll("a")])
+		#if page:
+			#soupBody = BeautifulSoup(page)
+			#self.techniques = dict([ (a.text[9:],a["href"]) for ul in soupBody.findAll("ul")[1:17] for a in ul.findAll("a")])
+		#del self.techniques['']
+		#del self.techniques['Recipes/Print version 0 to L']
 
 	def getAllEquipments(self):
 		title = "http://en.wikibooks.org/wiki/"
@@ -158,12 +166,35 @@ class Food:
 			nutrients[element[0]] = (element[1].span.text, element[1].text[len(element[1].span.text):])
 		return nutrients
 
+	def removePuncuations(self,stringS):
+		pun = string.punctuation
+		pun = pun[:2]+pun[3:21]+pun[22:]
+		regex=re.compile('[%s]' % re.escape(pun))
+		return regex.sub("",stringS)
+
+	def getPrimaryCookingMethod(self):
+		tokens = [w.lower() for w in nltk.word_tokenize(self.removePuncuations(" ".join([str(i).lower() for i in self.recipe["directions"]]))) if not w in nltk.corpus.stopwords.words()]
+		tags = nltk.pos_tag(tokens)
+		tokens = []
+		#print self.resource.techniques.keys()
+		for i in tags:
+			if i[0] in ['cooking', 'bring', 'remaining', 'serving', 'using']:
+				continue
+			if i[1].startswith("VB") and ( difflib.get_close_matches(i[0],self.resource.types) \
+				or difflib.get_close_matches(i[0],self.resource.techniques)):
+				tokens.append(i[0])
+			elif i[0] in ['grill']:
+				tokens.append(i[0])
+		tokens = list(set(tokens))
+		print tokens
+
 	def labelIngredients(self, ingredientText, amountText):
 		"""
 		amount = number + measurement
 		ingredient = descriptor + preparation + item
 		"""
 		ingredientText=ingredientText.replace(",","")
+
 		tokens = nltk.word_tokenize(ingredientText)
 		tags = nltk.pos_tag(tokens)
 		label = defaultdict(list)
@@ -233,5 +264,5 @@ class Food:
 
 if __name__ == "__main__":
 	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I"]
-	k=Food(recipes[1])
-	k.meatReplace()
+	k=Food(recipes[0])
+	k.getPrimaryCookingMethod()
