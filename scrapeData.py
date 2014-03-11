@@ -255,8 +255,6 @@ class Food:
 		try :
 			if any([ i in self.resource.glutenItems for i in name.split(" ")]):
 				return True
-			elif any([ i.lower() in self.resource.glutenItems for i in self.getSummary(name)]):
-				return True
 			else:
 				for i in self.resource.glutenItems:
 					if name == i:
@@ -269,9 +267,9 @@ class Food:
 		text = ["Meat can be replaced with varying degrees of success by tofu, tempeh, seitan, textured vegetable protein, vegetable or nut mixtures"]
 
 if __name__ == "__main__":
-	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I"]
-	k=Food(recipes[2])
-	k.meatReplace()
+	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I","Creamy-Banana-Bread"]
+	k=Food(recipes[0])
+	#k.meatReplace()
 	k.glutenReplace()
 
 
