@@ -49,16 +49,21 @@ class FoodResources:
 
 	glutenItems = ["flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
 
-	americanDict = [['Cheddar cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], 'Ground Beef', ['chicken', 'pork', 'steak', 'fish']]
+	americanDict = [['Cheddar cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Ground Beef', ['chicken', 'pork', 'steak', 'fish']]]
 
 	americanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish']
 
-	veryAmericanDict = [['String Cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], 'Bacon', ['chicken', 'pork', 'steak', 'fish']]
+	veryAmericanDict = [['String Cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Bacon', ['chicken', 'pork', 'steak', 'fish']]]
 
 	veryAmericanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish']
 
-	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict}
-	conversionChecks = {'american' : americanItems, 'vamerican' : veryAmericanItems}
+	mexicanDict = [['Pepperjack cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Ground Beef', ['chicken', 'pork', 'steak', 'fish', 'sausage']], ['Salsa', ['sauce']]]
+
+	mexicanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'bread', 'white bread', 'sausage','tortilla', 'salsa']
+
+
+	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict, 'mexican' :mexicanDict}
+	conversionChecks = {'american' : americanItems, 'vamerican' : veryAmericanItems, 'mexican' : mexicanItems}
 
 	# meatReplace = {
 	# 	"Beef" : ["seitan","mushroom sause","panner","rice cheese"],
@@ -369,5 +374,5 @@ if __name__ == "__main__":
 	k.getCookingMethods()
 	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I","Creamy-Banana-Bread"]
 	k=Food("Worlds-Best-Lasagna")
-	#k.meatReplace()
-	k.convertCuisine('vamerican')
+	k.meatReplace()
+	k.convertCuisine('mexican')
