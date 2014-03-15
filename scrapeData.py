@@ -53,9 +53,9 @@ class FoodResources:
 
 	americanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish']
 
-	veryAmericanDict = [['String Cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Bacon', ['chicken', 'pork', 'steak', 'fish']]]
+	veryAmericanDict = [['String Cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Bacon', ['chicken', 'pork', 'steak', 'fish']], ['Mayonaisse', ['sauce']]]
 
-	veryAmericanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish']
+	veryAmericanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
 	mexicanDict = [['Pepperjack cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Ground Beef', ['chicken', 'pork', 'steak', 'fish', 'sausage']], ['Salsa', ['sauce']]]
 
@@ -341,7 +341,7 @@ class Food:
 		for item in self.recipe["ingredients"]:
 			item["item"] = item["item"].lower()
 			if self.shouldBeConverted(item["item"], conversion):
-				replacer = self.findConversion(item["item"], conversion)
+				replacer = str(self.findConversion(item["item"], conversion))
 				replacer = self.alreadyThere(replacer)
 				if replacer == 'String Cheese':
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"]*20, " ", "sticks", " ", replacer
@@ -356,7 +356,7 @@ class Food:
 	def findConversion(self, name, dictChoice):
 		for replacement in self.resource.conversionCollections[dictChoice]:
 			for keyword in replacement[1]:
-				if keyword == name:
+				if keyword in name:
 					return replacement[0]
 
 	def shouldBeConverted(self, name, checkChoice):
@@ -380,6 +380,6 @@ if __name__ == "__main__":
 	k=Food(recipes[0])
 	k.getCookingMethods()
 	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I","Creamy-Banana-Bread"]
-	k=Food("Worlds-Best-Lasagna")
-	k.meatReplace()
-	k.convertCuisine('mexican')
+	k=Food("Best-Burger-Ever")
+	#k.meatReplace()
+	k.convertCuisine('vamerican')
