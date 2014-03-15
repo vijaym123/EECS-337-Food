@@ -45,23 +45,40 @@ class FoodResources:
 				'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'],
 				'Seitan' : ['chicken']}
 	
-	glutenDict = [['Cornmeal', ['flour', 'pancake mix']], ['Corn Tortilla', ['bread', 'toast', 'tortilla', 'pita']], ['Zucchini Ribbons', ['lasagna noodle', 'lasagna noodles']], ['Spaghetti Squash', ['spaghetti]']], ['Rice Noodles', ['pasta', 'noodles']], ['Gluten-Free Beer', ['beer', 'ale']], ["Cashews", ['crouton', 'croutons']], ['Gluten-Free Soy Sauce', ['soy sauce']], ['Tofu', ['seitan']] ]
+	glutenDict = {'Cornmeal' : ['flour', 'pancake mix'],
+					'Corn Tortilla' : ['bread', 'toast', 'tortilla', 'pita'],
+					'Zucchini Ribbons' : ['lasagna noodle', 'lasagna noodles'],
+					'Spaghetti Squash': ['spaghetti]'],
+					'Rice Noodles' : ['pasta', 'noodles'],
+					'Gluten-Free Beer' : ['beer', 'ale'],
+					'Cashews' : ['crouton', 'croutons'],
+					'Gluten-Free Soy Sauce' : ['soy sauce'],
+					'Tofu': ['seitan']}
 
 	glutenItems = ["flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
 
-	americanDict = [['Cheddar cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Ground Beef', ['chicken', 'pork', 'steak', 'fish']]]
+	americanDict = {'Cheddar cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
+					'Ground Beef' : ['chicken', 'pork', 'steak', 'fish']}
 
 	americanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish']
 
-	veryAmericanDict = [['String Cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Bacon', ['chicken', 'pork', 'steak', 'fish']], ['Mayonaisse', ['sauce']]]
+	veryAmericanDict = {'String Cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
+						'Bacon' : ['chicken', 'pork', 'steak', 'fish'],
+						'Mayonaisse' : ['sauce']}
 
 	veryAmericanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
-	mexicanDict = [['Pepperjack cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Ground Beef', ['chicken', 'pork', 'steak', 'fish', 'sausage']], ['Salsa', ['sauce']], ['Tortilla', ['bread']]]
+	mexicanDict = {'Pepperjack cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
+					'Ground Beef' : ['chicken', 'pork', 'steak', 'fish', 'sausage'],
+					'Salsa' : ['sauce'],
+					'Tortilla' : ['bread']}
 
 	mexicanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'bread', 'white bread', 'sausage','tortilla', 'salsa']
 
-	italianDict = [['parmigiano-reggiano', ['parmesan cheese']], ['Mozzarella', ['swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Italian Sausage', ['ground beef']], ['Marinara Sauce', ['ketchup']]]
+	italianDict = {'Parmigiano-Reggiano' : ['parmesan cheese'],
+					'Mozzarella' : ['swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
+					'Italian Sausage' : ['ground beef'],
+					'Marinara Sauce' : ['ketchup']}
 
 	italianItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'Mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup']
 
