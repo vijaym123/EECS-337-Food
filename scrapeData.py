@@ -24,7 +24,8 @@ class FoodResources:
 				"Batter", "Fermentation", "Backyard Grill", "Boiled", "Fry", "Pure", "Toast", "Temper", "Deep Fat Fry", \
 				"Roast", "Bake", "Stir-fry", "Scald", "Chiffonade", "Brown", "Mix", "Sweat", "Smoke", "Blanch", "Canning", \
 				"Boiling", "Mincing", "Braising", "Grill", "Knead", "Barbecue", "Clay pot", "Simmering", "Microwave", "Pan Fry", "Degorg", "Deglaz"]
-	equipments = []
+	equipments = ['grill', 'knife', 'bowl', 'refridgerator', 'oven', 'microwave', 'frying pan', 'plate', 'cutting board', 'fork', 'spoon', \
+				'blender', 'rolling pin', 'sink', 'freezer', 'baking dish', 'foil', 'griddle']
 	measurements = {}
 	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", \
 				"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry", "Grill"]
@@ -398,10 +399,9 @@ class Food:
 		text = ["Meat can be replaced with varying degrees of success by tofu, tempeh, seitan, textured vegetable protein, vegetable or nut mixtures"]
 
 if __name__ == "__main__":
-	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I"]
-	k=Food(recipes[0])
-	k.getCookingMethods()
 	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I","Creamy-Banana-Bread"]
-	k=Food("Best-Burger-Ever")
+	k=Food(recipes[1])
+	k.getCookingMethods()
+	print k.tools
 	#k.meatReplace()
 	k.convertCuisine('vamerican')
