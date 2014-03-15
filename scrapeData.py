@@ -40,7 +40,7 @@ class FoodResources:
 
 	vegDict = {'Tofu' : ['sauce', 'soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
 			    'Mashed Chickpeas' : ['fish', 'seafood'],
-				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'filet', 'meatloaf'], 
+				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'filet', 'meatloaf', 'ground beef'], 
 				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich'], 
 				'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'],
 				'Seitan' : ['chicken']}
@@ -61,9 +61,13 @@ class FoodResources:
 
 	mexicanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'bread', 'white bread', 'sausage','tortilla', 'salsa']
 
+	italianDict = [['parmigiano-reggiano', ['parmesan cheese']], ['Mozzarella', ['swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Italian Sausage', ['ground beef']]]
 
-	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict, 'mexican' :mexicanDict}
-	conversionChecks = {'american' : americanItems, 'vamerican' : veryAmericanItems, 'mexican' : mexicanItems}
+	italianItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'Mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef']
+
+
+	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict, 'mexican' :mexicanDict, 'italian' :italianDict}
+	conversionChecks = {'american' : americanItems, 'vamerican' : veryAmericanItems, 'mexican' : mexicanItems, 'italian' : italianItems}
 
 	# meatReplace = {
 	# 	"Beef" : ["seitan","mushroom sause","panner","rice cheese"],
@@ -288,6 +292,8 @@ class Food:
 			if newThing in item["item"]:
 				if newThing in "Eggplant":
 					return "Zucchini"
+				if newThing.lower() in "pepperjack cheese":
+					return "Cheddar Cheese"
 				#ADD MORE FALLBACKS HERE
 		return newThing
 
@@ -336,6 +342,7 @@ class Food:
 			item["item"] = item["item"].lower()
 			if self.shouldBeConverted(item["item"], conversion):
 				replacer = self.findConversion(item["item"], conversion)
+				replacer = self.alreadyThere(replacer)
 				if replacer == 'String Cheese':
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"]*20, " ", "sticks", " ", replacer
 					item["number"] = 20*item["number"]
