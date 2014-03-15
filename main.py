@@ -20,4 +20,4 @@ if __name__=="__main__":
 			choice = raw_input("")
 			if choice == '1':
 				for i in range(len(food.recipe['ingredients'])):
-					
+					print i+1, ")", food.recipe['ingredients'][i]['ingredient']

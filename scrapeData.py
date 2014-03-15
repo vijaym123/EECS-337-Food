@@ -138,7 +138,7 @@ class FoodResources:
 		page = url.urlopen(title+"Category:Equipment")
 		if page:
 			soupBody = BeautifulSoup(page)
-			self.equipments = dict([(a.text[9:],a["href"]) for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})])
+			self.equipments.extend([a.text[9:] for a in soupBody.findAll('a', attrs = {'href' : re.compile('/wiki/Cookbook:*')})])
 
 	def getAllMeasurements(self):
 		title = "http://en.wikibooks.org/wiki/"
