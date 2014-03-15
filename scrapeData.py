@@ -57,13 +57,13 @@ class FoodResources:
 
 	veryAmericanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
-	mexicanDict = [['Pepperjack cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Ground Beef', ['chicken', 'pork', 'steak', 'fish', 'sausage']], ['Salsa', ['sauce']]]
+	mexicanDict = [['Pepperjack cheese', ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Ground Beef', ['chicken', 'pork', 'steak', 'fish', 'sausage']], ['Salsa', ['sauce']], ['Tortilla', ['bread']]]
 
 	mexicanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'bread', 'white bread', 'sausage','tortilla', 'salsa']
 
-	italianDict = [['parmigiano-reggiano', ['parmesan cheese']], ['Mozzarella', ['swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Italian Sausage', ['ground beef']]]
+	italianDict = [['parmigiano-reggiano', ['parmesan cheese']], ['Mozzarella', ['swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu']], ['Italian Sausage', ['ground beef']], ['Marinara Sauce', ['ketchup']]]
 
-	italianItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'Mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef']
+	italianItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'Mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup']
 
 
 	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict, 'mexican' :mexicanDict, 'italian' :italianDict}
