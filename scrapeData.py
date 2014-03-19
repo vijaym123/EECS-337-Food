@@ -401,40 +401,71 @@ class Food:
 if __name__ == "__main__":
 	
 	'''
-	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I","Creamy-Banana-Bread"]
-	k=Food(recipes[2])
+	#recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I","Creamy-Banana-Bread"]
+	k=Food("http://allrecipes.com/Recipe/worlds-best-lasagna")
 	k.getCookingMethods()
 	print k.tools
-	#k.meatReplace()
-	k.convertCuisine('italian')
+	k.meatReplace()
+	#k.convertCuisine('italian')
 	'''
-
+	
 	u = raw_input("Enter AllRecipes.com URL: ")
 	print "\n\n"
 	k = Food(u)
+	k.getCookingMethods()
 	stayInLoop = True
+	transformationsDone = [False, False, False, False, False, False]
 	while stayInLoop == True:
-		print "What transformation would you like to perform on your recipe?\n1) To Vegetarian\n2) To Gluten-Free\n3) To Mexican\n4) To Italian\n5) To American\n6) To Very American\n7) Exit Program"
+		print "What transformation would you like to perform on your recipe?\n1) To Vegetarian\n2) To Gluten-Free\n3) To Mexican\n4) To Italian\n5) To American\n6) To Very American\n7) Reset Recipe\n8) Exit Program"
 		choice = raw_input("TYPE THE NUMBER OF THE TRANSFORMATION YOU WOULD LIKE TO PERFORM AND PRESS \"ENTER\": ")
 		if choice == "1":
-			k.meatReplace
-			print "\n\n"
+			if transformationsDone[0] == False:
+				k.meatReplace()
+				transformationsDone[0] = True
+				print "\n\n"
+			else:
+				print "Transformation already performed\n\n"
 		elif choice == "2":
-			k.glutenReplace
-			print "\n\n"
+			if transformationsDone[1] == False:
+				k.glutenReplace()
+				transformationsDone[1] = True
+				print "\n\n"
+			else:
+				print "Transformation already performed\n\n"
 		elif choice == "3":
-			k.convertCuisine("mexican")
-			print "\n\n"
+			if transformationsDone[2] == False:
+				k.convertCuisine("mexican")
+				transformationsDone[2] = True
+				print "\n\n"
+			else:
+				print "Transformation already performed\n\n"
 		elif choice == "4":
-			k.convertCuisine("italian")
-			print "\n\n"
+			if transformationsDone[3] == False:
+				k.convertCuisine("italian")
+				transformationsDone[3] = True
+				print "\n\n"
+			else:
+				print "Transformation already performed\n\n"
 		elif choice == "5":
-			k.convertCuisine("american")
-			print "\n\n"
+			if transformationsDone[4] == False:
+				k.convertCuisine("american")
+				transformationsDone[4] = True
+				print "\n\n"
+			else:
+				print "Transformation already performed\n\n"
 		elif choice == "6":
-			k.convertCuisine("vamerican")
-			print "\n\n"
+			if transformationsDone[5] == False:
+				k.convertCuisine("vamerican")
+				transformationsDone[5] = True
+				print "\n\n"
+			else:
+				print "Transformation already performed\n\n"
 		elif choice == "7":
+			del k
+			k = Food(u)
+			print "Recipe Reset\n\n"
+			transformationsDone = [False, False, False, False, False, False]
+		elif choice == "8":
 			stayInLoop = False
 			print "Goodbye!\n\n"
 		else:
