@@ -86,7 +86,7 @@ class FoodResources:
 					'Spaghetti' : ['noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles'],
 					'Risotto' : ['rice']}
 
-	italianItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'Mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup', 'sausage', 'chorizo', 'kielbasa', 'bratwurst', 'noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles', 'rice']
+	italianItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup', 'sausage', 'chorizo', 'kielbasa', 'bratwurst', 'noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles', 'rice']
 
 
 	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict, 'mexican' :mexicanDict, 'italian' :italianDict}
@@ -283,7 +283,7 @@ class Food:
 		return difflib.get_close_matches(name, self.resource.types)
 		
 	def getRecipe(self, name, serves):
-		page = url.urlopen("http://allrecipes.com/Recipe/"+name+"?scale="+str(serves)+"&ismetric=0")
+		page = url.urlopen(name+"?scale="+str(serves)+"&ismetric=0")
 		if page:
 			soupBody = BeautifulSoup(page)
 			self.recipe["name"] = soupBody.find("h1",{"id":"itemTitle"}).text 
@@ -315,8 +315,8 @@ class Food:
 			if newThing in item["item"]:
 				if newThing in "Eggplant":
 					return "Zucchini"
-				if newThing.lower() in "pepperjack cheese":
-					return "Cheddar Cheese"
+				#if newThing.lower() in "pepperjack cheese":
+				#	return "Cheddar Cheese"
 				#ADD MORE FALLBACKS HERE
 		return newThing
 
@@ -399,9 +399,52 @@ class Food:
 		text = ["Meat can be replaced with varying degrees of success by tofu, tempeh, seitan, textured vegetable protein, vegetable or nut mixtures"]
 
 if __name__ == "__main__":
+	
+	'''
 	recipes = ["Best-Burger-Ever","Worlds-Best-Lasagna","Banana-Pancakes-I","Creamy-Banana-Bread"]
-	k=Food(recipes[1])
+	k=Food(recipes[2])
 	k.getCookingMethods()
 	print k.tools
 	#k.meatReplace()
-	k.convertCuisine('vamerican')
+	k.convertCuisine('italian')
+	'''
+
+	u = raw_input("Enter AllRecipes.com URL: ")
+	print "\n\n"
+	k = Food(u)
+	stayInLoop = True
+	while stayInLoop == True:
+		print "What transformation would you like to perform on your recipe?\n1) To Vegetarian\n2) To Gluten-Free\n3) To Mexican\n4) To Italian\n5) To American\n6) To Very American\n7) Exit Program"
+		choice = raw_input("TYPE THE NUMBER OF THE TRANSFORMATION YOU WOULD LIKE TO PERFORM AND PRESS \"ENTER\": ")
+		if choice == "1":
+			k.meatReplace
+			print "\n\n"
+		elif choice == "2":
+			k.glutenReplace
+			print "\n\n"
+		elif choice == "3":
+			k.convertCuisine("mexican")
+			print "\n\n"
+		elif choice == "4":
+			k.convertCuisine("italian")
+			print "\n\n"
+		elif choice == "5":
+			k.convertCuisine("american")
+			print "\n\n"
+		elif choice == "6":
+			k.convertCuisine("vamerican")
+			print "\n\n"
+		elif choice == "7":
+			stayInLoop = False
+			print "Goodbye!\n\n"
+		else:
+			print "Not a valid transformation.\n\n"
+
+	
+
+
+
+
+
+
+
