@@ -338,9 +338,9 @@ class Food:
 
 	def findGlutenReplacer(self, name):
 		for replacement in self.resource.glutenDict:
-			for keyword in replacement[1]:
+			for keyword in (self.resource.glutenDict)[replacement]:
 				if keyword == name:
-					return replacement[0]
+					return replacement
 
 	
 	def hasGluten(self, name):
