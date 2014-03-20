@@ -359,6 +359,8 @@ class Food:
 				replacer = self.alreadyThere(replacer)
 				if 'sauce' in (item["item"]).lower():
 					replacer = item["item"]
+				elif 'broth' in (item["item"]).lower():
+					replacer = "Vegetable Broth"
 				elif 'breast' in (item["item"]).lower():
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, "Portobello Mushroom(s)"
 					item["item"] = "Portobello Mushroom"
