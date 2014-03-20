@@ -42,9 +42,9 @@ class FoodResources:
 	vegDict = {'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'], 
 				'Tofu' : ['soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
 			    'Mashed Chickpeas' : ['fish', 'seafood'],
-				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich', 'breast', 'boneless'], 
 				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
-				'Seitan' : ['chicken', 'pork']}
+				'Seitan' : ['chicken', 'pork'],
+				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich', 'breast', 'boneless']}
 	
 	glutenDict = {'Cornmeal' : ['flour', 'pancake mix'],
 					'Corn Tortilla' : ['bread', 'toast', 'tortilla', 'pita'],
