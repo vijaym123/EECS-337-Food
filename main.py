@@ -22,7 +22,15 @@ if __name__=="__main__":
 			print "3) Display the ingredients with quantity"		
 			print "4) Display preparation Time, Cooking time"
 			print "5) Display nutritional facts about the recipe"
-			print "6) Transform to Vegetarian\n7) Transform to Gluten-Free\n8) Transform to Mexican\n9) Transform to Italian\n10) Transform to American\n11) Transform to Very American\n12) Reset Recipe\n13) Exit Program"
+			print "6) Transform to Vegetarian"
+			print "7) Transform to Gluten-Free"
+			print "8) Transform to Mexican"
+			print "9) Transform to Italian"
+			print "10) Transform to American"
+			print "11) Transform to Very American"
+			print "12) Reset Recipe"
+			print "13) Exit Program"
+
 			choice = raw_input("")
 			os.system('cls' if os.name == 'nt' else 'clear')
 
