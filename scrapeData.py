@@ -275,7 +275,7 @@ class Food:
 			if i[1].startswith("VB") and ( difflib.get_close_matches(i[0],self.resource.types) \
 				or difflib.get_close_matches(i[0],self.resource.techniques)):
 				tokens.append(i[0])
-			elif i[0] in ['grill']:
+			elif i[0] in ['grill', 'fry', 'heat']:
 				tokens.append(i[0])
 		tokens = list(set(tokens))
 		print tokens
@@ -350,6 +350,7 @@ class Food:
 					item["ingredient"] = replacer
 					item["measurement"] = ""
 					item["number"] = self.serving
+					item["amount"] = self.serving
 				else:
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", item["number"], item["measurement"], replacer
 					item["item"] = replacer

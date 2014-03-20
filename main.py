@@ -44,13 +44,13 @@ if __name__=="__main__":
 			elif choice == '2':
 				print "Ingredients with descriptor : "
 				for i in range(len(food.recipe['ingredients'])):
-					print i+1,")", food.recipe['ingredients'][i]['ingredient'], " -> descriptor : ", food.recipe['ingredients'][i]['descriptor']
+					print i+1,")", food.recipe['ingredients'][i]['ingredient'], " - descriptor : ", food.recipe['ingredients'][i]['descriptor']
 				print "\n"
 
 			elif choice == '3':
 				print "Ingredients with quantity : "
 				for i in range(len(food.recipe['ingredients'])):
-					print i+1,")", food.recipe['ingredients'][i]['ingredient'], " -> quantity : ", food.recipe['ingredients'][i]['amount']
+					print i+1,")", food.recipe['ingredients'][i]['ingredient'], " - quantity : ", food.recipe['ingredients'][i]['amount']
 				print "\n"
 
 			elif choice == '4':
@@ -78,7 +78,7 @@ if __name__=="__main__":
 					print "\n"
 					print "Revised ingredients with quantity: "
 					for i in range(len(food.recipe['ingredients'])):
-						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " -> quantity : ", food.recipe['ingredients'][i]['amount']
+						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " - quantity : ", food.recipe['ingredients'][i]['amount']
 					print "\n\n"
 				else:
 					print "Transformation already performed\n\n"
@@ -90,7 +90,7 @@ if __name__=="__main__":
 					print "\n"
 					print "Revised ingredients with quantity: "
 					for i in range(len(food.recipe['ingredients'])):
-						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " -> quantity : ", food.recipe['ingredients'][i]['amount']
+						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " - quantity : ", food.recipe['ingredients'][i]['amount']
 					print "\n\n"
 				else:
 					print "Transformation already performed\n\n"
@@ -102,7 +102,7 @@ if __name__=="__main__":
 					print "\n"
 					print "Revised ingredients with quantity: "
 					for i in range(len(food.recipe['ingredients'])):
-						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " -> quantity : ", food.recipe['ingredients'][i]['amount']
+						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " - quantity : ", food.recipe['ingredients'][i]['amount']
 					print "\n\n"
 				else:
 					print "Transformation already performed\n\n"
@@ -114,7 +114,7 @@ if __name__=="__main__":
 					print "\n"
 					print "Revised ingredients with quantity: "
 					for i in range(len(food.recipe['ingredients'])):
-						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " -> quantity : ", food.recipe['ingredients'][i]['amount']
+						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " - quantity : ", food.recipe['ingredients'][i]['amount']
 					print "\n\n"
 				else:
 					print "Transformation already performed\n\n"
@@ -126,7 +126,7 @@ if __name__=="__main__":
 					print "\n"
 					print "Revised ingredients with quantity: "
 					for i in range(len(food.recipe['ingredients'])):
-						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " -> quantity : ", food.recipe['ingredients'][i]['amount']
+						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " - quantity : ", food.recipe['ingredients'][i]['amount']
 					print "\n\n"
 				else:
 					print "Transformation already performed\n\n"
@@ -138,7 +138,7 @@ if __name__=="__main__":
 					print "\n"
 					print "Revised ingredients with quantity: "
 					for i in range(len(food.recipe['ingredients'])):
-						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " -> quantity : ", food.recipe['ingredients'][i]['amount']
+						print i+1,")", food.recipe['ingredients'][i]['ingredient'], " - quantity : ", food.recipe['ingredients'][i]['amount']
 					print "\n\n"
 				else:
 					print "Transformation already performed\n\n"
