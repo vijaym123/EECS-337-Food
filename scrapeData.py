@@ -441,15 +441,20 @@ class Food:
 	def convertCuisine(self, conversion): 
 		for item in self.recipe["ingredients"]:
 			item["item"] = item["item"].lower()
-			if self.shouldBeConverted(item["item"], conversion):
+			if "broth" in item["item"]:
+				#do nothing for now
+				a = 1 + 1
+			elif self.shouldBeConverted(item["item"], conversion):
 				replacer = str(self.findConversion(item["item"], conversion))
 				replacer = self.alreadyThere(replacer)
 				if replacer == 'String Cheese':
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"]*20, " ", "sticks", " ", replacer
 					item["number"] = 20*item["number"]
 					item["measurement"] = "sticks"
-				else:
+				elif item["number"] != 0:
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
+				else:
+					print item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["measurement"], " ", replacer
 				item["item"] = replacer
 				item["ingredient"] = replacer
 				item["number"] = self.serving
