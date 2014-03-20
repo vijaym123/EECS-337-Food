@@ -58,16 +58,33 @@ class FoodResources:
 
 	glutenItems = ["flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
 
-	americanDict = {'Cheddar cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
-					'Ground Beef' : ['chicken', 'pork', 'steak', 'fish']}
+	americanDict = {'broccoli' : ['greens', 'green vegetables', 'asparagus'],
+                        'French Fries' : ['potatoes', 'root vegetables'],
+                        'Cheddar cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
+                        'Ground Beef' : ['chicken', 'pork', 'steak', 'fish'],
+                        'ketchup' : ['tomato sauce'],
+                        'Tabasco sauce' : ['hot sauce'],
+                        'instant noodles' : ['noodles'],
+                        'instant pasta' : ['pasta']}
 
-	americanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish']
+	americanItems = ['pasta', 'noodles', 'hot sauce', 'tomato sauce', 'asparagus', 'greens', 'green vegetables', 'potatoes', 'root vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish']
 
-	veryAmericanDict = {'String Cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
-						'Bacon' : ['chicken', 'pork', 'steak', 'fish'],
-						'Mayonaisse' : ['sauce']}
+	veryAmericanDict = {'American Fries' : ['potatoes', 'potato', 'vegetable', 'vegetables'],
+                            'ketchup' : ['tomatoes', 'tomato'],
+                            'mustard' : ['hot sauce'],
+                            'String Cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
+                            'Bacon' : ['chicken', 'pork', 'steak', 'fish'],
+                            'Mayonaisse' : ['sauce'],
+                            'SpaghettiO\'s' : ['spaghetti'],
+                            'hot dog bun' : ['bread loaf', 'croissant'],
+                            'hamburger bun' : ['bagel'],
+                            'Instant Mac and Cheese' : ['noodles'],
+                            'peanut butter' : ['nuts', 'walnuts', 'almonds', 'peanuts'],
+                            'canned fruit' : ['fruit'],
+                            'canned apples' : ['apples'],
+                            'full-fat milk' : ['low-fat milk', 'non-fat-milk']}
 
-	veryAmericanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
+	veryAmericanItems = ['hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
 	mexicanDict = {'Pepperjack cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
 					'Ground Beef' : ['chicken', 'pork', 'fish', 'ham', 'turkey'],
@@ -303,11 +320,13 @@ class Food:
 				if replacer in "Portobello Mushroom":
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, replacer, "(s)"
 					item["item"] = replacer
+					item["ingredient"] = replacer
 					item["measurement"] = ""
 					item["number"] = self.serving
 				else:
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", item["number"], item["measurement"], replacer
 					item["item"] = replacer
+					item["ingredient"] = replacer
 					item["number"] = self.serving
 
 	def alreadyThere(self, newThing):
@@ -334,13 +353,14 @@ class Food:
 				replacer = self.findGlutenReplacer(item["item"])
 				print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
 				item["item"] = replacer
+				item["ingredient"] = replacer
 				item["number"] = self.serving
 
 	def findGlutenReplacer(self, name):
 		for replacement in self.resource.glutenDict:
-			for keyword in replacement[1]:
+			for keyword in (self.resource.glutenDict)[replacement]:
 				if keyword == name:
-					return replacement[0]
+					return replacement
 
 	
 	def hasGluten(self, name):
@@ -373,6 +393,7 @@ class Food:
 				else:
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
 				item["item"] = replacer
+				item["ingredient"] = replacer
 				item["number"] = self.serving
 				
 
