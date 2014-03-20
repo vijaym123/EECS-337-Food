@@ -300,13 +300,13 @@ class Food:
 		"""
 		ingredientText=ingredientText.replace(",","")
 
-		tokens = nltk.word_tokenize(ingredientText)
+		tokens = nltk.word_tokenize(self.convertToAscii(ingredientText))
 		tags = nltk.pos_tag(tokens)
 		label = defaultdict(list)
-		label["ingredient"] = ingredientText
+		label["ingredient"] = self.convertToAscii(ingredientText)
 
-		if difflib.get_close_matches(ingredientText, self.resource.ingredients.keys()):
-			label["item"].append(ingredientText)
+		if difflib.get_close_matches(label["ingredient"], self.resource.ingredients.keys()):
+			label["item"].append(label["ingredient"])
 		else:
 			for i in tags:
 				if i[1].startswith("JJ"):
@@ -338,7 +338,16 @@ class Food:
 
 	def TypeOfPreparation(self, name):
 		return difflib.get_close_matches(name, self.resource.types)
-		
+	
+	def convertToAscii(self,string):
+		output = []
+		for word in string.split(" "):
+			try :
+				output.append(str(word))
+			except:
+				pass
+		return " ".join(output)
+
 	def getRecipe(self, name, serves):
 		page = url.urlopen(name+"?scale="+str(serves)+"&ismetric=0")
 		if page:
@@ -346,7 +355,7 @@ class Food:
 			self.recipe["name"] = soupBody.find("h1",{"id":"itemTitle"}).text 
 			self.recipe["description"] = soupBody.find("meta",{"id":"metaDescription"})["content"]
 			self.recipe["ingredients"] = self.getIngredients(soupBody)
-			self.recipe["directions"] = [i.text for i in soupBody.findAll("span",{"class":"plaincharacterwrap break"})]
+			self.recipe["directions"] = [self.convertToAscii(i.text) for i in soupBody.findAll("span",{"class":"plaincharacterwrap break"})]
 			self.recipe["prepTime"] = soupBody.find("time",{"id":"timePrep"})["datetime"][2:]
 			self.recipe["prepCook"] = soupBody.find("time",{"id":"timeCook"})["datetime"][2:]
 			self.recipe["prepTotal"] = soupBody.find("time",{"id":"timeTotal"})["datetime"][2:]
