@@ -209,7 +209,6 @@ class Food:
 		Modify this to work on any given item.
 		"""
 		try :
-<<<<<<< HEAD
 			nameList = []
 			for i in name.split(" "):
 				try:
@@ -217,9 +216,6 @@ class Food:
 				except:
 					pass
 			if any([ i in self.resource.meatItems for i in nameList]):
-=======
-			if any([ i in self.resource.meatItems for i in name.split(" ") ]):
->>>>>>> FETCH_HEAD
 				return True
 			#elif any([ i.lower() in self.resource.meatItems for i in self.getSummary(name)]):
 			#	return True
