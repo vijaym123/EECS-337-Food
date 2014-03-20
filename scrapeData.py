@@ -303,11 +303,13 @@ class Food:
 				if replacer in "Portobello Mushroom":
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, replacer, "(s)"
 					item["item"] = replacer
+					item["ingredient"] = replacer
 					item["measurement"] = ""
 					item["number"] = self.serving
 				else:
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", item["number"], item["measurement"], replacer
 					item["item"] = replacer
+					item["ingredient"] = replacer
 					item["number"] = self.serving
 
 	def alreadyThere(self, newThing):
@@ -334,6 +336,7 @@ class Food:
 				replacer = self.findGlutenReplacer(item["item"])
 				print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
 				item["item"] = replacer
+				item["ingredient"] = replacer
 				item["number"] = self.serving
 
 	def findGlutenReplacer(self, name):
@@ -373,6 +376,7 @@ class Food:
 				else:
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
 				item["item"] = replacer
+				item["ingredient"] = replacer
 				item["number"] = self.serving
 				
 
