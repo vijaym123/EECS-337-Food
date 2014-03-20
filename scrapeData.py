@@ -357,18 +357,19 @@ class Food:
 			if self.isMeat(item["ingredient"]):
 				replacer = self.findVegReplacer(item["item"])
 				replacer = self.alreadyThere(replacer)
-				if replacer in "Portobello Mushroom":
+				if 'sauce' in (item["item"]).lower():
+					replacer = item["item"]
+				elif 'breast' in (item["item"]).lower():
+					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, "Portobello Mushroom(s)"
+					item["item"] = "Portobello Mushroom"
+					item["ingredient"] = "Portobello Mushroom"
+				elif replacer in "Portobello Mushroom":
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, replacer, "(s)"
 					item["item"] = replacer
 					item["ingredient"] = replacer
 					item["measurement"] = ""
 					item["number"] = self.serving
 					item["amount"] = self.serving
-				elif 'sauce' in (item["item"]).lower():
-					replacer = item["item"]
-				elif 'breast' in (item["item"]).lower():
-					item["item"] = "Portobello Mushroom"
-					item["ingredient"] = "Portobello Mushroom"
 				else:
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", item["number"], item["measurement"], replacer
 					item["item"] = replacer
@@ -389,7 +390,6 @@ class Food:
 	def findVegReplacer(self, name):
 		for replacement in self.resource.vegDict.keys():
 			for keyword in self.resource.vegDict[replacement]:
-				print name, " ", keyword
 				#if name.lower() in keyword.lower() or keyword.lower() in name.lower():
 				if keyword.lower() in str(self.recipe["description"]).lower().split(" ") or keyword.lower() in str(self.recipe["name"]).lower().split(" "):
 					return replacement
