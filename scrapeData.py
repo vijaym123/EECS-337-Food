@@ -40,10 +40,9 @@ class FoodResources:
 			("WP","Wh-pronoun"),("WP$","Possessive wh-pronoun"),("WRB","Wh-adverb")])
 
 	vegDict = {'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'], 
-				'Tofu' : ['soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
-			    'Mashed Chickpeas' : ['fish', 'seafood'],
-				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
-				'Seitan' : ['chicken', 'pork'],
+				'Tofu' : ['eel', 'shrimp', 'lobster', 'crab', 'soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
+			    'Mashed Chickpeas' : ['anchovy', 'anchovies', 'sardine', 'sardines', 'fish', 'seafood'],
+				'Seitan': ['chicken', 'pork', 'bass', 'cod', 'catfish', 'blowfish', 'herring', 'halibut', 'mackerel', 'mahi mahi', 'monkfish', 'pike', 'salmon', 'sea bass', 'shark', 'snapper', 'swordfish', 'tilapia', 'trout', 'tuna', 'brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
 				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich', 'breast', 'boneless']}
 	
 	glutenDict = {'Cornmeal' : ['flour', 'pancake mix'],
