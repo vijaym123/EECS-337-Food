@@ -58,18 +58,18 @@ class FoodResources:
 
 	glutenItems = ["flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
 
-	americanDict = ['broccoli' : ['greens', 'green vegetables', 'asparagus'],
+	americanDict = {'broccoli' : ['greens', 'green vegetables', 'asparagus'],
                         'French Fries' : ['potatoes', 'root vegetables'],
                         'Cheddar cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
                         'Ground Beef' : ['chicken', 'pork', 'steak', 'fish'],
                         'ketchup' : ['tomato sauce'],
                         'Tabasco sauce' : ['hot sauce'],
                         'instant noodles' : ['noodles'],
-                        'instant pasta' : ['pasta']]
+                        'instant pasta' : ['pasta']}
 
 	americanItems = ['pasta', 'noodles', 'hot sauce', 'tomato sauce', 'asparagus', 'greens', 'green vegetables', 'potatoes', 'root vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish']
 
-	veryAmericanDict = ['American Fries' : ['potatoes', 'potato', 'vegetable', 'vegetables'],
+	veryAmericanDict = {'American Fries' : ['potatoes', 'potato', 'vegetable', 'vegetables'],
                             'ketchup' : ['tomatoes', 'tomato'],
                             'mustard' : ['hot sauce'],
                             'String Cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
@@ -82,7 +82,7 @@ class FoodResources:
                             'peanut butter' : ['nuts', 'walnuts', 'almonds', 'peanuts'],
                             'canned fruit' : ['fruit'],
                             'canned apples' : ['apples'],
-                            'full-fat milk' : ['low-fat milk', 'non-fat-milk']]
+                            'full-fat milk' : ['low-fat milk', 'non-fat-milk']}
 
 	veryAmericanItems = ['hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
