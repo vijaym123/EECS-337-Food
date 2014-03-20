@@ -229,6 +229,26 @@ class Food:
 			self.tools.extend([i for i in self.resource.equipments if i!='' and i.lower() in step.lower()])
 		self.tools = list(set(self.tools))
 
+		length = len(self.tools)-1
+		incI = True
+
+		i = 0
+		while i <= length:
+			incI = True
+			j = i+1
+			while j <= length:
+				if (self.tools[i]).lower() in (self.tools[j]).lower():
+					del self.tools[i]
+					length = length - 1
+					incI = False
+				elif (self.tools[j]).lower() in (self.tools[i]).lower():
+					del self.tools[j]
+					length = length - 1
+				j = j+1
+			if incI == True:
+				i = i + 1		
+
+
 	def getNutrients(self, soupBody):
 		nutrients = {}
 		for element in zip([i.find("li",{"class":"categories"}).text for i in soupBody.findAll("ul",{"id":"ulNutrient"})],\
