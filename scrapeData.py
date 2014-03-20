@@ -39,11 +39,10 @@ class FoodResources:
 			("VBN","Verb, past participle"),("VBP","Verb, non-rd person singular present"),("VBZ","Verb, rd person singular present"),("WDT","Wh-determiner"),
 			("WP","Wh-pronoun"),("WP$","Possessive wh-pronoun"),("WRB","Wh-adverb")])
 
-	vegDict = {'Tofu' : ['sauce', 'soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
+	vegDict = {'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'], 'Tofu' : ['soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
 			    'Mashed Chickpeas' : ['fish', 'seafood'],
 				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'filet', 'meatloaf', 'ground beef'], 
 				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich'], 
-				'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'],
 				'Seitan' : ['chicken']}
 	
 	glutenDict = {'Cornmeal' : ['flour', 'pancake mix'],
@@ -210,7 +209,13 @@ class Food:
 		Modify this to work on any given item.
 		"""
 		try :
-			if any([ i in self.resource.meatItems for i in name.split(" ")]):
+			nameList = []
+			for i in name.split(" "):
+				try:
+					nameList.append(i.lower())
+				except:
+					pass
+			if any([ i in self.resource.meatItems for i in nameList]):
 				return True
 			#elif any([ i.lower() in self.resource.meatItems for i in self.getSummary(name)]):
 			#	return True
@@ -343,7 +348,7 @@ class Food:
 	def findVegReplacer(self, name):
 		for replacement in self.resource.vegDict.keys():
 			for keyword in self.resource.vegDict[replacement]:
-				if keyword in str(self.recipe["description"]).lower().split(" ") or keyword in str(self.recipe["name"]).lower().split(" "):
+				if keyword.lower() in str(self.recipe["description"]).lower().split(" ") or keyword.lower() in str(self.recipe["name"]).lower().split(" "):
 					return replacement
 		return "Tofu"
 
@@ -359,7 +364,7 @@ class Food:
 	def findGlutenReplacer(self, name):
 		for replacement in self.resource.glutenDict:
 			for keyword in (self.resource.glutenDict)[replacement]:
-				if keyword == name:
+				if keyword.lower() in name.lower():
 					return replacement
 
 	
@@ -400,7 +405,7 @@ class Food:
 	def findConversion(self, name, dictChoice):
 		for replacement in self.resource.conversionCollections[dictChoice]:
 			for keyword in (self.resource.conversionCollections[dictChoice])[replacement]:
-				if keyword in name:
+				if keyword.lower() in name.lower():
 					return replacement
 
 	def shouldBeConverted(self, name, checkChoice):
