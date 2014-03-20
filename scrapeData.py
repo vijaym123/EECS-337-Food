@@ -40,17 +40,16 @@ class FoodResources:
 			("WP","Wh-pronoun"),("WP$","Possessive wh-pronoun"),("WRB","Wh-adverb")])
 
 	vegDict = {'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'], 
-				'Tofu' : ['soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
-			    'Mashed Chickpeas' : ['fish', 'seafood'],
-				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
-				'Seitan' : ['chicken', 'pork'],
+				'Tofu' : ['eel', 'shrimp', 'lobster', 'crab', 'soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
+			    'Mashed Chickpeas' : ['anchovy', 'anchovies', 'sardine', 'sardines', 'fish', 'seafood'],
+				'Seitan': ['chicken', 'pork', 'bass', 'cod', 'catfish', 'blowfish', 'herring', 'halibut', 'mackerel', 'mahi mahi', 'monkfish', 'pike', 'salmon', 'sea bass', 'shark', 'snapper', 'swordfish', 'tilapia', 'trout', 'tuna', 'brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
 				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich', 'breast', 'boneless']}
 	
 	glutenDict = {'Cornmeal' : ['flour', 'pancake mix'],
 					'Corn Tortilla' : ['bread', 'toast', 'tortilla', 'pita'],
 					'Zucchini Ribbons' : ['lasagna noodle', 'lasagna noodles'],
 					'Spaghetti Squash': ['spaghetti]'],
-					'Rice Noodles' : ['pasta', 'noodles','macaroni', 'rotelli'],
+					'Rice Noodles' : ['pasta', 'noodles','macaroni', 'rotelli', 'Acini di Pepe', 'Alphabet Pasta', 'Anelli', 'Bucatini', 'Campanelle', 'Cappelletti', 'Casarecce', 'Cavatappi', 'Cavatelli', 'Conchiglie', 'Ditalini', 'Macaroni', 'Farfalle', 'Farfalline', 'Fideo', 'Fusilli', 'Gemelli', 'Gigli', 'Linguine', 'Manicotti', 'Orecchiette', 'Orzo', 'Penne', 'Mostaccioli', 'Penne Rigate', 'Penne', 'Radiatori', 'Ravioli', 'Reginette', 'Riccioli',  'Rigatoni', 'Rocchetti', 'Rotelle', 'Rotini', 'Ruote', 'Spaghetti', 'Tortellini', 'Tortiglioni', 'Tripolini', 'Tubini', 'Vermicelli', 'Ziti'],
 					'Gluten-Free Beer' : ['beer', 'ale'],
 					'Cashews' : ['crouton', 'croutons'],
 					'Gluten-Free Soy Sauce' : ['soy sauce'],
@@ -75,7 +74,7 @@ class FoodResources:
                             'String Cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
                             'Bacon' : ['chicken', 'pork', 'steak', 'fish'],
                             'Mayonaisse' : ['sauce'],
-                            'SpaghettiO\'s' : ['spaghetti'],
+                            'SpaghettiO\'s' : ['spaghetti', 'Acini di Pepe', 'Alphabet Pasta', 'Anelli', 'Bucatini', 'Campanelle', 'Cappelletti', 'Casarecce', 'Cavatappi', 'Cavatelli', 'Conchiglie', 'Ditalini', 'Macaroni', 'Farfalle', 'Farfalline', 'Fideo', 'Fusilli', 'Gemelli', 'Gigli', 'Linguine', 'Manicotti', 'Orecchiette', 'Orzo', 'Penne', 'Mostaccioli', 'Penne Rigate', 'Penne', 'Radiatori', 'Ravioli', 'Reginette', 'Riccioli',  'Rigatoni', 'Rocchetti', 'Rotelle', 'Rotini', 'Ruote', 'Spaghetti', 'Tortellini', 'Tortiglioni', 'Tripolini', 'Tubini', 'Vermicelli', 'Ziti'],
                             'hot dog bun' : ['bread loaf', 'croissant'],
                             'hamburger bun' : ['bagel'],
                             'Instant Mac and Cheese' : ['noodles'],
@@ -300,13 +299,13 @@ class Food:
 		"""
 		ingredientText=ingredientText.replace(",","")
 
-		tokens = nltk.word_tokenize(ingredientText)
+		tokens = nltk.word_tokenize(self.convertToAscii(ingredientText))
 		tags = nltk.pos_tag(tokens)
 		label = defaultdict(list)
-		label["ingredient"] = ingredientText
+		label["ingredient"] = self.convertToAscii(ingredientText)
 
-		if difflib.get_close_matches(ingredientText, self.resource.ingredients.keys()):
-			label["item"].append(ingredientText)
+		if difflib.get_close_matches(label["ingredient"], self.resource.ingredients.keys()):
+			label["item"].append(label["ingredient"])
 		else:
 			for i in tags:
 				if i[1].startswith("JJ"):
@@ -338,7 +337,16 @@ class Food:
 
 	def TypeOfPreparation(self, name):
 		return difflib.get_close_matches(name, self.resource.types)
-		
+	
+	def convertToAscii(self,string):
+		output = []
+		for word in string.split(" "):
+			try :
+				output.append(str(word))
+			except:
+				pass
+		return " ".join(output)
+
 	def getRecipe(self, name, serves):
 		page = url.urlopen(name+"?scale="+str(serves)+"&ismetric=0")
 		if page:
@@ -346,7 +354,7 @@ class Food:
 			self.recipe["name"] = soupBody.find("h1",{"id":"itemTitle"}).text 
 			self.recipe["description"] = soupBody.find("meta",{"id":"metaDescription"})["content"]
 			self.recipe["ingredients"] = self.getIngredients(soupBody)
-			self.recipe["directions"] = [i.text for i in soupBody.findAll("span",{"class":"plaincharacterwrap break"})]
+			self.recipe["directions"] = [self.convertToAscii(i.text) for i in soupBody.findAll("span",{"class":"plaincharacterwrap break"})]
 			self.recipe["prepTime"] = soupBody.find("time",{"id":"timePrep"})["datetime"][2:]
 			self.recipe["prepCook"] = soupBody.find("time",{"id":"timeCook"})["datetime"][2:]
 			self.recipe["prepTotal"] = soupBody.find("time",{"id":"timeTotal"})["datetime"][2:]
