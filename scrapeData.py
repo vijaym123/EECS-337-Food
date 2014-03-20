@@ -27,7 +27,7 @@ class FoodResources:
 	equipments = ['grill', 'knife', 'bowl', 'refridgerator', 'oven', 'microwave', 'frying pan', 'plate', 'cutting board', 'fork', 'spoon', \
 				'blender', 'rolling pin', 'sink', 'freezer', 'baking dish', 'foil', 'griddle']
 	measurements = {}
-	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", \
+	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", "Fry", \
 				"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry", "Grill"]
 	
 	posTags = dict([("CC","Coordinating conjunction"),("CD","Cardinal number"),("DT","Determiner"),("EX","Existential there"),("FW","Foreign word"),
@@ -244,7 +244,9 @@ class Food:
 
 	def getCookingMethods(self):
 		tokens = [w.lower() for w in nltk.word_tokenize(self.removePuncuations(" ".join([str(i).lower() for i in self.recipe["directions"]]))) if not w in nltk.corpus.stopwords.words()]
+		print tokens
 		tags = nltk.pos_tag(tokens)
+		print tags
 		tokens = []
 		#print self.resource.techniques.keys()
 		for i in tags:
