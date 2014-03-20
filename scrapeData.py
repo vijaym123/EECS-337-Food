@@ -332,7 +332,14 @@ class Food:
 		return dict(label) 
 
 	def getIngredients(self, soupBody):
-		iterator = zip([i.text for i in soupBody.findAll("span",{"class":"ingredient-name"}) if i.text != "&nbsp;"],[ i.text for i in soupBody.findAll("span",{"class":"ingredient-amount"}) if i.text != "&nbsp;"])
+		data = soupBody.findAll("p",{"itemprop":"ingredients"})
+		iterator = []
+		for i in data:
+			if i.find('span',{"class":"ingredient-name"}) and self.convertToAscii(i.find('span',{"class":"ingredient-name"}).text)!='':
+				if i.find('span',{"class":"ingredient-amount"}):
+					iterator.append((i.find('span',{"class":"ingredient-name"}).text,i.find('span',{"class":"ingredient-amount"}).text))
+				else :
+					iterator.append((i.find('span',{"class":"ingredient-name"}).text,""))
 		return [self.labelIngredients(item[0],item[1]) for item in iterator]
 
 	def TypeOfPreparation(self, name):
