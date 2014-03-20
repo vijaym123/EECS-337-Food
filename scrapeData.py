@@ -12,8 +12,8 @@ import string
 
 class FoodResources:
 	meatItems = ["Beef","Bison","Dog","Game","Bear","Venison","Wild Boar","Goat",\
-				"Horse","Lamb","Mutton","Fish","Pork","Rabbit","Turtle","Veal","Chicken", \
-				"Cornish Game Hen","Duck","Quail","Turkey","Ostrich","Goose","Bacon",\
+				"Horse","Lamb","Mutton","Fish", "Salmon", "Sea Bass", "Tuna", "Shark", "Mahi-Mahi", "Pork","Rabbit","Turtle","Veal","Chicken", \
+				"Cornish Game Hen","Duck","Quail","Turkey","Ostrich","Goose","Bacon","Steak",\
 				"Cold cuts","Ham","Sausage", "Alligator","Bison","Frog",\
 				"Kangaroo","Lizard","Snake","Insects","Locust","Cricket","Honey Ant",\
 				"Grubs","Whale", "Pepperoni"]
@@ -25,7 +25,7 @@ class FoodResources:
 				"Roast", "Bake", "Stir-fry", "Scald", "Chiffonade", "Brown", "Mix", "Sweat", "Smoke", "Blanch", "Canning", \
 				"Boiling", "Mincing", "Braising", "Grill", "Knead", "Barbecue", "Clay pot", "Simmering", "Microwave", "Pan Fry", "Degorg", "Deglaz"]
 	equipments = ['grill', 'knife', 'bowl', 'refridgerator', 'oven', 'microwave', 'frying pan', 'plate', 'cutting board', 'fork', 'spoon', \
-				'blender', 'rolling pin', 'sink', 'freezer', 'baking dish', 'foil', 'griddle']
+				'blender', 'rolling pin', 'sink', 'freezer', 'baking dish', 'foil', 'griddle', 'skillet']
 	measurements = {}
 	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", "Fry", \
 				"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry", "Grill"]
@@ -39,11 +39,12 @@ class FoodResources:
 			("VBN","Verb, past participle"),("VBP","Verb, non-rd person singular present"),("VBZ","Verb, rd person singular present"),("WDT","Wh-determiner"),
 			("WP","Wh-pronoun"),("WP$","Possessive wh-pronoun"),("WRB","Wh-adverb")])
 
-	vegDict = {'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'], 'Tofu' : ['soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
+	vegDict = {'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'], 
+				'Tofu' : ['soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
 			    'Mashed Chickpeas' : ['fish', 'seafood'],
-				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'filet', 'meatloaf', 'ground beef'], 
-				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich'], 
-				'Seitan' : ['chicken']}
+				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich', 'breast', 'boneless'], 
+				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
+				'Seitan' : ['chicken', 'pork']}
 	
 	glutenDict = {'Cornmeal' : ['flour', 'pancake mix'],
 					'Corn Tortilla' : ['bread', 'toast', 'tortilla', 'pita'],
@@ -341,7 +342,7 @@ class Food:
 
 	def meatReplace(self):
 		for item in self.recipe["ingredients"]:
-			if self.isMeat(item["item"]):
+			if self.isMeat(item["ingredient"]):
 				replacer = self.findVegReplacer(item["item"])
 				replacer = self.alreadyThere(replacer)
 				if replacer in "Portobello Mushroom":
@@ -351,6 +352,11 @@ class Food:
 					item["measurement"] = ""
 					item["number"] = self.serving
 					item["amount"] = self.serving
+				elif 'sauce' in (item["item"]).lower():
+					replacer = item["item"]
+				elif 'breast' in (item["item"]).lower():
+					item["item"] = "Portobello Mushroom"
+					item["ingredient"] = "Portobello Mushroom"
 				else:
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", item["number"], item["measurement"], replacer
 					item["item"] = replacer
@@ -371,6 +377,8 @@ class Food:
 	def findVegReplacer(self, name):
 		for replacement in self.resource.vegDict.keys():
 			for keyword in self.resource.vegDict[replacement]:
+				print name, " ", keyword
+				#if name.lower() in keyword.lower() or keyword.lower() in name.lower():
 				if keyword.lower() in str(self.recipe["description"]).lower().split(" ") or keyword.lower() in str(self.recipe["name"]).lower().split(" "):
 					return replacement
 		return "Tofu"
