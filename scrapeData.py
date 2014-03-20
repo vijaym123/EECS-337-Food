@@ -193,7 +193,7 @@ class Food:
 		Modify this to work on any given item.
 		"""
 		try :
-			if any([ i in self.resource.meatItems for i in name.split(" ")]):
+			if any([ i in self.resource.meatItems for i in name.split(" ") ]):
 				return True
 			#elif any([ i.lower() in self.resource.meatItems for i in self.getSummary(name)]):
 			#	return True
@@ -276,7 +276,7 @@ class Food:
 		return dict(label) 
 
 	def getIngredients(self, soupBody):
-		iterator = zip([i.text for i in soupBody.findAll("span",{"id":"lblIngName"})],[ i.text for i in soupBody.findAll("span",{"id":"lblIngAmount"})])
+		iterator = zip([i.text for i in soupBody.findAll("span",{"class":"ingredient-name"}) if i.text != "&nbsp;"],[ i.text for i in soupBody.findAll("span",{"class":"ingredient-amount"}) if i.text != "&nbsp;"])
 		return [self.labelIngredients(item[0],item[1]) for item in iterator]
 
 	def TypeOfPreparation(self, name):
@@ -397,6 +397,21 @@ class Food:
 
 	def Notes(self):
 		text = ["Meat can be replaced with varying degrees of success by tofu, tempeh, seitan, textured vegetable protein, vegetable or nut mixtures"]
+
+	def expectedFormat(self):
+		output = {}
+		output["ingredients"] = []
+		for item in self.recipe["ingredients"]:
+			test = {}
+			test["name"] = item["item"]
+			test["quantity"] = item["number"]
+			test["measurement"] = item["measurement"]
+			test["descriptor"] = item["descriptor"]
+			test["preparation"] = item["preparation"]
+			output["ingredients"].append(test)
+		output["cooking method"] = self.getCookingMethods()
+		return output
+
 
 if __name__ == "__main__":
 	
