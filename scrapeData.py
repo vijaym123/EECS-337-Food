@@ -50,7 +50,7 @@ class FoodResources:
 					'Corn Tortilla' : ['bread', 'toast', 'tortilla', 'pita'],
 					'Zucchini Ribbons' : ['lasagna noodle', 'lasagna noodles'],
 					'Spaghetti Squash': ['spaghetti]'],
-					'Rice Noodles' : ['pasta', 'noodles'],
+					'Rice Noodles' : ['pasta', 'noodles','macaroni', 'rotelli'],
 					'Gluten-Free Beer' : ['beer', 'ale'],
 					'Cashews' : ['crouton', 'croutons'],
 					'Gluten-Free Soy Sauce' : ['soy sauce'],
@@ -279,7 +279,18 @@ class Food:
 			elif i[0] in ['grill', 'fry', 'heat']:
 				tokens.append(i[0])
 		tokens = list(set(tokens))
-		print tokens
+
+	def getPrimaryMethod(self, methods):
+		hierarchy = ['bake', 'grill', 'fry', 'roast', 'smoke', 'roast', 'boil', 'sautee', 'broil' 'steam', 'heat', 'mix', 'stir']
+		bestIndex = 99
+		for method in methods:
+			for i in range(0, len(hierarchy)-1):
+				if method.lower() in hierarchy[i]:
+					if i < bestIndex:
+						bestIndex = i
+		if bestIndex == 99:
+			return methods[0]
+		return hierarchy[bestIndex]
 
 	def labelIngredients(self, ingredientText, amountText):
 		"""

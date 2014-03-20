@@ -22,14 +22,15 @@ if __name__=="__main__":
 			print "4) Display preparation Time, Cooking time"
 			print "5) Display nutritional facts about the recipe"
 			print "6) Display tools used"
-			print "7) Transform to Vegetarian"
-			print "8) Transform to Gluten-Free"
-			print "9) Transform to Mexican"
-			print "10) Transform to Italian"
-			print "11) Transform to American"
-			print "12) Transform to Very American"
-			print "13) Reset Recipe"
-			print "14) Exit Program"
+			print "7) Display Primary Cooking Method"
+			print "8) Transform to Vegetarian"
+			print "9) Transform to Gluten-Free"
+			print "10) Transform to Mexican"
+			print "11) Transform to Italian"
+			print "12) Transform to American"
+			print "13) Transform to Very American"
+			print "14) Reset Recipe"
+			print "15) Exit Program"
 
 			choice = raw_input("")
 			os.system('cls' if os.name == 'nt' else 'clear')
@@ -72,6 +73,10 @@ if __name__=="__main__":
 				print "\n\n"
 
 			elif choice == '7':
+				print "All Cooking Methods: ", food.methods
+				print "Primary Cooking Method: ", food.getPrimaryMethod(food.method)
+
+			elif choice == '8':
 				if transformationsDone[0] == False:
 					food.meatReplace()
 					transformationsDone[0] = True
@@ -83,7 +88,7 @@ if __name__=="__main__":
 				else:
 					print "Transformation already performed\n\n"
 
-			elif choice == '8':
+			elif choice == '9':
 				if transformationsDone[1] == False:
 					food.glutenReplace()
 					transformationsDone[1] = True
@@ -95,7 +100,7 @@ if __name__=="__main__":
 				else:
 					print "Transformation already performed\n\n"
 
-			elif choice == '9':
+			elif choice == '10':
 				if transformationsDone[2] == False:
 					food.convertCuisine("mexican")
 					transformationsDone[2] = True
@@ -107,7 +112,7 @@ if __name__=="__main__":
 				else:
 					print "Transformation already performed\n\n"
 
-			elif choice == '10':
+			elif choice == '11':
 				if transformationsDone[3] == False:
 					food.convertCuisine("italian")
 					transformationsDone[3] = True
@@ -119,7 +124,7 @@ if __name__=="__main__":
 				else:
 					print "Transformation already performed\n\n"
 
-			elif choice == '11':
+			elif choice == '12':
 				if transformationsDone[4] == False:
 					food.convertCuisine("american")
 					transformationsDone[4] = True
@@ -131,7 +136,7 @@ if __name__=="__main__":
 				else:
 					print "Transformation already performed\n\n"
 
-			elif choice == '12':
+			elif choice == '13':
 				if transformationsDone[5] == False:
 					food.convertCuisine("vamerican")
 					transformationsDone[5] = True
@@ -143,14 +148,14 @@ if __name__=="__main__":
 				else:
 					print "Transformation already performed\n\n"
 
-			elif choice == '13':
+			elif choice == '14':
 				print "Resetting recipe..."
 				del food
 				food = scrapeData.Food(url)
 				print "Recipe Reset\n\n"
 				transformationsDone = [False, False, False, False, False, False]
 
-			elif choice == '14':
+			elif choice == '15':
 				stayInLoop = False
 				print "Goodbye!\n\n"
 
