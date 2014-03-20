@@ -25,7 +25,7 @@ class FoodResources:
 				"Roast", "Bake", "Stir-fry", "Scald", "Chiffonade", "Brown", "Mix", "Sweat", "Smoke", "Blanch", "Canning", \
 				"Boiling", "Mincing", "Braising", "Grill", "Knead", "Barbecue", "Clay pot", "Simmering", "Microwave", "Pan Fry", "Degorg", "Deglaz"]
 	equipments = ['grill', 'knife', 'bowl', 'refridgerator', 'oven', 'microwave', 'frying pan', 'plate', 'cutting board', 'fork', 'spoon', \
-				'blender', 'rolling pin', 'sink', 'freezer', 'baking dish', 'foil', 'griddle', 'skillet']
+				'blender', 'rolling pin', 'sink', 'freezer', 'baking dish', 'foil', 'griddle', 'skillet', 'dish']
 	measurements = {}
 	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", "Fry", \
 				"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry", "Grill"]
@@ -265,9 +265,9 @@ class Food:
 
 	def getCookingMethods(self):
 		tokens = [w.lower() for w in nltk.word_tokenize(self.removePuncuations(" ".join([str(i).lower() for i in self.recipe["directions"]]))) if not w in nltk.corpus.stopwords.words()]
-		print tokens
+		#print tokens
 		tags = nltk.pos_tag(tokens)
-		print tags
+		#print tags
 		tokens = []
 		#print self.resource.techniques.keys()
 		for i in tags:
@@ -276,15 +276,16 @@ class Food:
 			if i[1].startswith("VB") and ( difflib.get_close_matches(i[0],self.resource.types) \
 				or difflib.get_close_matches(i[0],self.resource.techniques)):
 				tokens.append(i[0])
-			elif i[0] in ['grill', 'fry', 'heat']:
+			elif i[0] in ['grill', 'fry', 'heat', 'bake', 'barbecue', 'braise', 'ferment', 'marinade', 'microwave', 'cook', 'smoke', 'stirfry']:
 				tokens.append(i[0])
 		tokens = list(set(tokens))
+		return tokens
 
 	def getPrimaryMethod(self, methods):
-		hierarchy = ['bake', 'grill', 'fry', 'roast', 'smoke', 'roast', 'boil', 'sautee', 'broil' 'steam', 'heat', 'mix', 'stir']
+		hierarchy = ['bake', 'grill', 'fry', 'roast', 'smoke', 'boil', 'sautee', 'broil' 'steam', 'heat', 'mix', 'stir']
 		bestIndex = 99
 		for method in methods:
-			for i in range(0, len(hierarchy)-1):
+			for i in range(0, len(hierarchy)):
 				if method.lower() in hierarchy[i]:
 					if i < bestIndex:
 						bestIndex = i
@@ -477,7 +478,7 @@ class Food:
 			test["descriptor"] = item["descriptor"]
 			test["preparation"] = item["preparation"]
 			output["ingredients"].append(test)
-		output["cooking method"] = self.getCookingMethods()
+		output["cooking method"] = self.getPrimaryMethod(self.getCookingMethods())
 		return output
 
 

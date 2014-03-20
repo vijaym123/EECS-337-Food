@@ -1,5 +1,6 @@
 import scrapeData
 import os
+from pprint import pprint
 if __name__=="__main__":
 	stayInLoop = True
 	while stayInLoop == True:
@@ -30,7 +31,8 @@ if __name__=="__main__":
 			print "12) Transform to American"
 			print "13) Transform to Very American"
 			print "14) Reset Recipe"
-			print "15) Exit Program"
+			print "15) Print Recipe in Expected Format"
+			print "16) Exit Program"
 
 			choice = raw_input("")
 			os.system('cls' if os.name == 'nt' else 'clear')
@@ -73,8 +75,8 @@ if __name__=="__main__":
 				print "\n\n"
 
 			elif choice == '7':
-				print "All Cooking Methods: ", food.methods
-				print "Primary Cooking Method: ", food.getPrimaryMethod(food.method)
+				print "All Cooking Methods: ", food.getCookingMethods()
+				print "Primary Cooking Method: ", food.getPrimaryMethod(food.getCookingMethods())
 
 			elif choice == '8':
 				if transformationsDone[0] == False:
@@ -156,6 +158,9 @@ if __name__=="__main__":
 				transformationsDone = [False, False, False, False, False, False]
 
 			elif choice == '15':
+				pprint(food.expectedFormat())
+
+			elif choice == '16':
 				stayInLoop = False
 				print "Goodbye!\n\n"
 
