@@ -55,7 +55,7 @@ class FoodResources:
 					'Gluten-Free Soy Sauce' : ['soy sauce'],
 					'Tofu': ['seitan']}
 
-	glutenItems = ["flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
+	glutenItems = ["Acini di Pepe", "Alphabet Pasta", "Anelli", "Bucatini", "Campanelle", "Cappelletti", "Casarecce", "Cavatappi", "Cavatelli", "Conchiglie", "Ditalini", "Macaroni", "Farfalle", "Farfalline", "Fideo", "Fusilli", "Gemelli", "Gigli", "Linguine", "Manicotti", "Orecchiette", "Orzo", "Penne", "Mostaccioli", "Penne Rigate", "Penne", "Radiatori", "Ravioli", "Reginette", "Riccioli",  "Rigatoni", "Rocchetti", "Rotelle", "Rotini", "Ruote", "Spaghetti", "Tortellini", "Tortiglioni", "Tripolini", "Tubini", "Vermicelli", "Ziti", "flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
 
 	americanDict = {'broccoli' : ['greens', 'green vegetables', 'asparagus'],
                         'French Fries' : ['potatoes', 'root vegetables'],
@@ -83,7 +83,7 @@ class FoodResources:
                             'canned apples' : ['apples'],
                             'full-fat milk' : ['low-fat milk', 'non-fat-milk']}
 
-	veryAmericanItems = ['hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
+	veryAmericanItems = ['Acini di Pepe', 'Alphabet Pasta', 'Anelli', 'Bucatini', 'Campanelle', 'Cappelletti', 'Casarecce', 'Cavatappi', 'Cavatelli', 'Conchiglie', 'Ditalini', 'Macaroni', 'Farfalle', 'Farfalline', 'Fideo', 'Fusilli', 'Gemelli', 'Gigli', 'Linguine', 'Manicotti', 'Orecchiette', 'Orzo', 'Penne', 'Mostaccioli', 'Penne Rigate', 'Penne', 'Radiatori', 'Ravioli', 'Reginette', 'Riccioli',  'Rigatoni', 'Rocchetti', 'Rotelle', 'Rotini', 'Ruote', 'Spaghetti', 'Tortellini', 'Tortiglioni', 'Tripolini', 'Tubini', 'Vermicelli', 'Ziti', 'hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
 	mexicanDict = {'Pepperjack cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'cheddar', 'cheddar cheese'],
 					'Ground Beef' : ['chicken', 'pork', 'fish', 'ham', 'turkey'],
