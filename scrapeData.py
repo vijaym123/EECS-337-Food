@@ -49,13 +49,13 @@ class FoodResources:
 					'Corn Tortilla' : ['bread', 'toast', 'tortilla', 'pita'],
 					'Zucchini Ribbons' : ['lasagna noodle', 'lasagna noodles'],
 					'Spaghetti Squash': ['spaghetti]'],
-					'Rice Noodles' : ['pasta', 'noodles','macaroni', 'rotelli'],
+					'Rice Noodles' : ['pasta', 'noodles','macaroni', 'rotelli', 'Acini di Pepe', 'Alphabet Pasta', 'Anelli', 'Bucatini', 'Campanelle', 'Cappelletti', 'Casarecce', 'Cavatappi', 'Cavatelli', 'Conchiglie', 'Ditalini', 'Macaroni', 'Farfalle', 'Farfalline', 'Fideo', 'Fusilli', 'Gemelli', 'Gigli', 'Linguine', 'Manicotti', 'Orecchiette', 'Orzo', 'Penne', 'Mostaccioli', 'Penne Rigate', 'Penne', 'Radiatori', 'Ravioli', 'Reginette', 'Riccioli',  'Rigatoni', 'Rocchetti', 'Rotelle', 'Rotini', 'Ruote', 'Spaghetti', 'Tortellini', 'Tortiglioni', 'Tripolini', 'Tubini', 'Vermicelli', 'Ziti'],
 					'Gluten-Free Beer' : ['beer', 'ale'],
 					'Cashews' : ['crouton', 'croutons'],
 					'Gluten-Free Soy Sauce' : ['soy sauce'],
 					'Tofu': ['seitan']}
 
-	glutenItems = ["flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
+	glutenItems = ["Acini di Pepe", "Alphabet Pasta", "Anelli", "Bucatini", "Campanelle", "Cappelletti", "Casarecce", "Cavatappi", "Cavatelli", "Conchiglie", "Ditalini", "Macaroni", "Farfalle", "Farfalline", "Fideo", "Fusilli", "Gemelli", "Gigli", "Linguine", "Manicotti", "Orecchiette", "Orzo", "Penne", "Mostaccioli", "Penne Rigate", "Penne", "Radiatori", "Ravioli", "Reginette", "Riccioli",  "Rigatoni", "Rocchetti", "Rotelle", "Rotini", "Ruote", "Spaghetti", "Tortellini", "Tortiglioni", "Tripolini", "Tubini", "Vermicelli", "Ziti", "flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
 
 	americanDict = {'broccoli' : ['greens', 'green vegetables', 'asparagus'],
                         'French Fries' : ['potatoes', 'root vegetables'],
@@ -74,7 +74,7 @@ class FoodResources:
                             'String Cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
                             'Bacon' : ['chicken', 'pork', 'steak', 'fish'],
                             'Mayonaisse' : ['sauce'],
-                            'SpaghettiO\'s' : ['spaghetti'],
+                            'SpaghettiO\'s' : ['spaghetti', 'Acini di Pepe', 'Alphabet Pasta', 'Anelli', 'Bucatini', 'Campanelle', 'Cappelletti', 'Casarecce', 'Cavatappi', 'Cavatelli', 'Conchiglie', 'Ditalini', 'Macaroni', 'Farfalle', 'Farfalline', 'Fideo', 'Fusilli', 'Gemelli', 'Gigli', 'Linguine', 'Manicotti', 'Orecchiette', 'Orzo', 'Penne', 'Mostaccioli', 'Penne Rigate', 'Penne', 'Radiatori', 'Ravioli', 'Reginette', 'Riccioli',  'Rigatoni', 'Rocchetti', 'Rotelle', 'Rotini', 'Ruote', 'Spaghetti', 'Tortellini', 'Tortiglioni', 'Tripolini', 'Tubini', 'Vermicelli', 'Ziti'],
                             'hot dog bun' : ['bread loaf', 'croissant'],
                             'hamburger bun' : ['bagel'],
                             'Instant Mac and Cheese' : ['noodles'],
@@ -83,7 +83,7 @@ class FoodResources:
                             'canned apples' : ['apples'],
                             'full-fat milk' : ['low-fat milk', 'non-fat-milk']}
 
-	veryAmericanItems = ['hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
+	veryAmericanItems = ['Acini di Pepe', 'Alphabet Pasta', 'Anelli', 'Bucatini', 'Campanelle', 'Cappelletti', 'Casarecce', 'Cavatappi', 'Cavatelli', 'Conchiglie', 'Ditalini', 'Macaroni', 'Farfalle', 'Farfalline', 'Fideo', 'Fusilli', 'Gemelli', 'Gigli', 'Linguine', 'Manicotti', 'Orecchiette', 'Orzo', 'Penne', 'Mostaccioli', 'Penne Rigate', 'Penne', 'Radiatori', 'Ravioli', 'Reginette', 'Riccioli',  'Rigatoni', 'Rocchetti', 'Rotelle', 'Rotini', 'Ruote', 'Spaghetti', 'Tortellini', 'Tortiglioni', 'Tripolini', 'Tubini', 'Vermicelli', 'Ziti', 'hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
 	mexicanDict = {'Pepperjack cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'cheddar', 'cheddar cheese'],
 					'Ground Beef' : ['chicken', 'pork', 'fish', 'ham', 'turkey'],
@@ -374,6 +374,8 @@ class Food:
 				replacer = self.alreadyThere(replacer)
 				if 'sauce' in (item["item"]).lower():
 					replacer = item["item"]
+				elif 'broth' in (item["item"]).lower():
+					replacer = "Vegetable Broth"
 				elif 'breast' in (item["item"]).lower():
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, "Portobello Mushroom(s)"
 					item["item"] = "Portobello Mushroom"
@@ -446,15 +448,20 @@ class Food:
 	def convertCuisine(self, conversion): 
 		for item in self.recipe["ingredients"]:
 			item["item"] = item["item"].lower()
-			if self.shouldBeConverted(item["item"], conversion):
+			if "broth" in item["item"]:
+				#do nothing for now
+				a = 1 + 1
+			elif self.shouldBeConverted(item["item"], conversion):
 				replacer = str(self.findConversion(item["item"], conversion))
 				replacer = self.alreadyThere(replacer)
 				if replacer == 'String Cheese':
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"]*20, " ", "sticks", " ", replacer
 					item["number"] = 20*item["number"]
 					item["measurement"] = "sticks"
-				else:
+				elif item["number"] != 0:
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
+				else:
+					print item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["measurement"], " ", replacer
 				item["item"] = replacer
 				item["ingredient"] = replacer
 				item["number"] = self.serving
