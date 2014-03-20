@@ -40,10 +40,9 @@ class FoodResources:
 			("WP","Wh-pronoun"),("WP$","Possessive wh-pronoun"),("WRB","Wh-adverb")])
 
 	vegDict = {'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'], 
-				'Tofu' : ['soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
-			    'Mashed Chickpeas' : ['fish', 'seafood'],
-				'Seitan': ['brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
-				'Seitan' : ['chicken', 'pork'],
+				'Tofu' : ['eel', 'shrimp', 'lobster', 'crab', 'soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
+			    'Mashed Chickpeas' : ['anchovy', 'anchovies', 'sardine', 'sardines', 'fish', 'seafood'],
+				'Seitan': ['chicken', 'pork', 'bass', 'cod', 'catfish', 'blowfish', 'herring', 'halibut', 'mackerel', 'mahi mahi', 'monkfish', 'pike', 'salmon', 'sea bass', 'shark', 'snapper', 'swordfish', 'tilapia', 'trout', 'tuna', 'brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
 				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich', 'breast', 'boneless']}
 	
 	glutenDict = {'Cornmeal' : ['flour', 'pancake mix'],
@@ -86,7 +85,7 @@ class FoodResources:
 
 	veryAmericanItems = ['hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
-	mexicanDict = {'Pepperjack cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
+	mexicanDict = {'Pepperjack cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'cheddar', 'cheddar cheese'],
 					'Ground Beef' : ['chicken', 'pork', 'fish', 'ham', 'turkey'],
 					'Carne Asada' : ['steak'],
 					'Chorizo' : ['sausage', 'bratwurst', 'kielbasa', 'bacon', 'salami', 'pepperoni', 'italian sausage'],
@@ -94,7 +93,7 @@ class FoodResources:
 					'Chipotle Mayonaisse' : ['mayonaisse', 'mayo'],
 					'Tortilla' : ['bread', 'white bread', 'pita']}
 
-	mexicanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'bratwurst', 'kielbasa', 'bacon', 'mayonnaise', 'mayo', 'sauce', 'bread', 'white bread', 'pita', 'sausage','tortilla', 'salsa', 'ham', 'turkey', 'salami', 'pepperoni', 'italian sausage']
+	mexicanItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'bratwurst', 'kielbasa', 'bacon', 'mayonnaise', 'mayo', 'sauce', 'bread', 'white bread', 'pita', 'sausage', 'salsa', 'ham', 'turkey', 'salami', 'pepperoni', 'italian sausage']
 
 	italianDict = {'Parmigiano-Reggiano' : ['parmesan cheese'],
 					'Mozzarella' : ['swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
@@ -366,18 +365,19 @@ class Food:
 			if self.isMeat(item["ingredient"]):
 				replacer = self.findVegReplacer(item["item"])
 				replacer = self.alreadyThere(replacer)
-				if replacer in "Portobello Mushroom":
+				if 'sauce' in (item["item"]).lower():
+					replacer = item["item"]
+				elif 'breast' in (item["item"]).lower():
+					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, "Portobello Mushroom(s)"
+					item["item"] = "Portobello Mushroom"
+					item["ingredient"] = "Portobello Mushroom"
+				elif replacer in "Portobello Mushroom":
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, replacer, "(s)"
 					item["item"] = replacer
 					item["ingredient"] = replacer
 					item["measurement"] = ""
 					item["number"] = self.serving
 					item["amount"] = self.serving
-				elif 'sauce' in (item["item"]).lower():
-					replacer = item["item"]
-				elif 'breast' in (item["item"]).lower():
-					item["item"] = "Portobello Mushroom"
-					item["ingredient"] = "Portobello Mushroom"
 				else:
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", item["number"], item["measurement"], replacer
 					item["item"] = replacer
@@ -398,7 +398,6 @@ class Food:
 	def findVegReplacer(self, name):
 		for replacement in self.resource.vegDict.keys():
 			for keyword in self.resource.vegDict[replacement]:
-				print name, " ", keyword
 				#if name.lower() in keyword.lower() or keyword.lower() in name.lower():
 				if keyword.lower() in str(self.recipe["description"]).lower().split(" ") or keyword.lower() in str(self.recipe["name"]).lower().split(" "):
 					return replacement
