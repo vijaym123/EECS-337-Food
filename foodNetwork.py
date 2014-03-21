@@ -58,7 +58,7 @@ def getIngredients(link):
 	for i in items:
 		t = True
 		for c in commonItems:
-			if not(c in i):
+			if c in i:
 				t = False
 				break
 		if t:

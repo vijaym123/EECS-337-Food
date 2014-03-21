@@ -51,10 +51,10 @@ class FoodResources:
 			("WP","Wh-pronoun"),("WP$","Possessive wh-pronoun"),("WRB","Wh-adverb")])
 
 	vegDict = {'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'], 
-				'Tofu' : ['eel', 'shrimp', 'lobster', 'crab', 'soup', 'thai', 'asian', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
+				'Tofu' : ['eel', 'shrimp', 'lobster', 'crab', 'soup', 'thai', 'asian', 'teriyaki', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
 			    'Mashed Chickpeas' : ['anchovy', 'anchovies', 'sardine', 'sardines', 'fish', 'seafood'],
 				'Seitan': ['chicken', 'pork', 'bass', 'cod', 'catfish', 'blowfish', 'herring', 'halibut', 'mackerel', 'mahi mahi', 'monkfish', 'pike', 'salmon', 'sea bass', 'shark', 'snapper', 'swordfish', 'tilapia', 'trout', 'tuna', 'brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
-				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich', 'breast', 'boneless']}
+				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich']}
 	
 	glutenDict = {'Cornmeal' : ['flour', 'pancake mix'],
 					'Corn Tortilla' : ['bread', 'toast', 'tortilla', 'pita'],
@@ -232,7 +232,7 @@ class Food:
 	recipe = {}
 	resource = None
 	tools = []
-	serving = 12
+	serving = 6
 
 	def __init__(self, name, serves = serving):
 		self.resource = FoodResources()
@@ -285,7 +285,7 @@ class Food:
 					length = length - 1
 				j = j+1
 			if incI == True:
-				i = i + 1
+				i = i + 1		
 
 
 	def getNutrients(self, soupBody):
@@ -314,13 +314,13 @@ class Food:
 			if i[1].startswith("VB") and ( difflib.get_close_matches(i[0],self.resource.types) \
 				or difflib.get_close_matches(i[0],self.resource.techniques)):
 				tokens.append(i[0])
-			elif i[0] in ['grill', 'fry', 'heat', 'bake', 'barbecue', 'braise', 'ferment', 'marinade', 'microwave', 'cook', 'smoke', 'stirfry']:
+			elif i[0] in ['grill', 'fry', 'simmer', 'mix', 'stir', 'melt', 'heat', 'bake', 'barbecue', 'braise', 'ferment', 'marinade', 'microwave', 'cook', 'smoke', 'stirfry']:
 				tokens.append(i[0])
 		tokens = list(set(tokens))
 		return tokens
 
 	def getPrimaryMethod(self, methods):
-		hierarchy = ['bake', 'grill', 'fry', 'roast', 'smoke', 'boil', 'sautee', 'broil' 'steam', 'heat', 'mix', 'stir']
+		hierarchy = ['bake', 'grill', 'fry', 'roast', 'smoke', 'boil', 'sautee', 'broil', 'simmer', 'steam', 'heat', 'melt', 'mix', 'stir']
 		bestIndex = 99
 		for method in methods:
 			for i in range(0, len(hierarchy)):
@@ -411,14 +411,25 @@ class Food:
 			if self.isMeat(item["ingredient"]):
 				replacer = self.findVegReplacer(item["item"])
 				replacer = self.alreadyThere(replacer)
+				print item["item"]
 				if 'sauce' in (item["item"]).lower():
 					replacer = item["item"]
 				elif 'broth' in (item["item"]).lower():
 					replacer = "Vegetable Broth"
-				elif 'breast' in (item["item"]).lower():
-					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, "Portobello Mushroom(s)"
-					item["item"] = "Portobello Mushroom"
-					item["ingredient"] = "Portobello Mushroom"
+				elif 'breast' in str(item["item"]).lower():
+					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", item["number"] * 7, " ounces Seitan"
+					item["item"] = "Seitan"
+					item["ingredient"] = "Seitan"
+					item["measurement"] = "ounces"
+					item["number"] = item["number"] * 7
+					item["amount"] = str(item["number"]) + " " + item["measurement"]
+				elif 'thigh' in str(item["item"]).lower():
+					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", item["number"] * 3, " ounces Seitan"
+					item["item"] = "Seitan"
+					item["ingredient"] = "Seitan"
+					item["measurement"] = "ounces"
+					item["number"] = item["number"] * 3
+					item["amount"] = str(item["number"]) + " " + item["measurement"]
 				elif replacer in "Portobello Mushroom":
 					print item["number"], " ", item["measurement"], " ", item["item"]," Replace with : ", self.serving, replacer, "(s)"
 					item["item"] = replacer
@@ -498,7 +509,7 @@ class Food:
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"]*20, " ", "sticks", " ", replacer
 					item["number"] = 20*item["number"]
 					item["measurement"] = "sticks"
-				elif (replacer in "ketchup") or (replacer in "Mayonaisse") or (replacer in "Tabasco sauce"):
+				elif (replacer in "ketchup") or (replacer in "Tabasco sauce"):
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", "bottles", " ", replacer
 					item["measurement"] = "bottles"
 				elif item["number"] != 0:
@@ -619,12 +630,3 @@ if __name__ == "__main__":
 			print "Goodbye!\n\n"
 		else:
 			print "Not a valid transformation.\n\n"
-
-	
-
-
-
-
-
-
-
