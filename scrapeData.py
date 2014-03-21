@@ -120,9 +120,12 @@ class FoodResources:
 					'Italian Sausage' : ['ground beef', 'sausage', 'chorizo', 'kielbasa', 'bratwurst'],
 					'Marinara Sauce' : ['ketchup'],
 					'Spaghetti' : ['noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles'],
-					'Risotto' : ['rice']}
+					'Risotto' : ['rice'],
+					'Eggplant' : ['squash', 'melon', 'melons', 'pumpkin', 'pumpkins', 'cantelope'],
+					'Tomato' : ['gourd', 'gourds'],
+					'Carrots' : ['corn']}
 
-	italianItems = ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup', 'sausage', 'chorizo', 'kielbasa', 'bratwurst', 'noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles', 'rice']
+	italianItems = ['squash', 'melon', 'melons', 'pumpkin', 'pumpkins', 'cantelope', 'gourd', 'gourds', 'corn', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup', 'sausage', 'chorizo', 'kielbasa', 'bratwurst', 'noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles', 'rice']
 
 
 	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict, 'mexican' :mexicanDict, 'italian' :italianDict}
