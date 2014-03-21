@@ -466,11 +466,14 @@ class Food:
 	def glutenReplace(self):
 		for item in self.recipe["ingredients"]:
 			if self.hasGluten(item["item"]):
-				replacer = self.findGlutenReplacer(item["item"])
-				print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
-				item["item"] = replacer
-				item["ingredient"] = replacer
-				item["number"] = self.serving
+				if "bread crumb" in (item["item"]).lower():
+					break
+				else:
+					replacer = self.findGlutenReplacer(item["item"])
+					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
+					item["item"] = replacer
+					item["ingredient"] = replacer
+					item["number"] = self.serving
 
 	def findGlutenReplacer(self, name):
 		for replacement in self.resource.glutenDict:
@@ -512,6 +515,8 @@ class Food:
 				elif (replacer in "ketchup") or (replacer in "Tabasco sauce"):
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", "bottles", " ", replacer
 					item["measurement"] = "bottles"
+				elif "bread crumb" in (item["item"]).lower():
+					break
 				elif item["number"] != 0:
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
 				else:
