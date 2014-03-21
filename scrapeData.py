@@ -51,11 +51,11 @@ class FoodResources:
 					'Spaghetti Squash': ['spaghetti]'],
 					'Rice Noodles' : ['pasta', 'noodles','macaroni', 'rotelli', 'Acini di Pepe', 'Alphabet Pasta', 'Anelli', 'Bucatini', 'Campanelle', 'Cappelletti', 'Casarecce', 'Cavatappi', 'Cavatelli', 'Conchiglie', 'Ditalini', 'Macaroni', 'Farfalle', 'Farfalline', 'Fideo', 'Fusilli', 'Gemelli', 'Gigli', 'Linguine', 'Manicotti', 'Orecchiette', 'Orzo', 'Penne', 'Mostaccioli', 'Penne Rigate', 'Penne', 'Radiatori', 'Ravioli', 'Reginette', 'Riccioli',  'Rigatoni', 'Rocchetti', 'Rotelle', 'Rotini', 'Ruote', 'Spaghetti', 'Tortellini', 'Tortiglioni', 'Tripolini', 'Tubini', 'Vermicelli', 'Ziti'],
 					'Gluten-Free Beer' : ['beer', 'ale'],
-					'Cashews' : ['crouton', 'croutons'],
+					'Cashews' : ['crouton', 'croutons', 'breadcrumbs', 'bread crumbs'],
 					'Gluten-Free Soy Sauce' : ['soy sauce'],
 					'Tofu': ['seitan']}
 
-	glutenItems = ["Acini di Pepe", "Alphabet Pasta", "Anelli", "Bucatini", "Campanelle", "Cappelletti", "Casarecce", "Cavatappi", "Cavatelli", "Conchiglie", "Ditalini", "Macaroni", "Farfalle", "Farfalline", "Fideo", "Fusilli", "Gemelli", "Gigli", "Linguine", "Manicotti", "Orecchiette", "Orzo", "Penne", "Mostaccioli", "Penne Rigate", "Penne", "Radiatori", "Ravioli", "Reginette", "Riccioli",  "Rigatoni", "Rocchetti", "Rotelle", "Rotini", "Ruote", "Spaghetti", "Tortellini", "Tortiglioni", "Tripolini", "Tubini", "Vermicelli", "Ziti", "flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
+	glutenItems = ["breadcrumbs", "bread crumbs", "Acini di Pepe", "Alphabet Pasta", "Anelli", "Bucatini", "Campanelle", "Cappelletti", "Casarecce", "Cavatappi", "Cavatelli", "Conchiglie", "Ditalini", "Macaroni", "Farfalle", "Farfalline", "Fideo", "Fusilli", "Gemelli", "Gigli", "Linguine", "Manicotti", "Orecchiette", "Orzo", "Penne", "Mostaccioli", "Penne Rigate", "Penne", "Radiatori", "Ravioli", "Reginette", "Riccioli",  "Rigatoni", "Rocchetti", "Rotelle", "Rotini", "Ruote", "Spaghetti", "Tortellini", "Tortiglioni", "Tripolini", "Tubini", "Vermicelli", "Ziti", "flour", "bread", "toast", "tortilla", "beer", "ale", "cake", "pie", "pasta", "spaghetti", "noodle", "noodles", "lasagna noodle", "lasagna noodles", "pancake", "pancake mix", "pita", "crouton", "croutons", "soy sauce", "seitan"]
 
 	americanDict = {'broccoli' : ['greens', 'green vegetables', 'asparagus'],
                         'French Fries' : ['potatoes', 'root vegetables'],
