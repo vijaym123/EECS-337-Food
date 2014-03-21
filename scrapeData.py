@@ -54,7 +54,7 @@ class FoodResources:
 	vegDict = {'Eggplant' : ['lasagna', 'italian', 'pasta', 'stew'], 
 				'Tofu' : ['eel', 'shrimp', 'lobster', 'crab', 'soup', 'thai', 'asian', 'teriyaki', 'tandoori', 'curried', 'curry', 'sautee', 'stirfry', 'fried', 'fry'], 
 			    'Mashed Chickpeas' : ['anchovy', 'anchovies', 'sardine', 'sardines', 'fish', 'seafood'],
-				'Seitan': ['chicken', 'pork', 'bass', 'cod', 'catfish', 'blowfish', 'herring', 'halibut', 'mackerel', 'mahi mahi', 'monkfish', 'pike', 'salmon', 'sea bass', 'shark', 'snapper', 'swordfish', 'tilapia', 'trout', 'tuna', 'brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
+				'Seitan': ['chicken', 'pork', 'ground beef', 'bass', 'cod', 'catfish', 'blowfish', 'herring', 'halibut', 'mackerel', 'mahi mahi', 'monkfish', 'pike', 'salmon', 'sea bass', 'shark', 'snapper', 'swordfish', 'tilapia', 'trout', 'tuna', 'brisket', 'medallion', 'cutlet', 'steak', 'steaks', 'filet', 'meatloaf', 'ground beef'], 
 				'Portobello Mushroom' : ['burger', 'hamburger', 'sandwich']}
 	
 	glutenDict = {'Cornmeal' : ['flour', 'pancake mix'],
@@ -453,7 +453,7 @@ class Food:
 		for item in self.recipe["ingredients"]:
 			if newThing in item["item"]:
 				if newThing in "Eggplant":
-					return "Zucchini"
+					return "Tofu"
 				#if newThing.lower() in "pepperjack cheese":
 				#	return "Cheddar Cheese"
 				#ADD MORE FALLBACKS HERE
@@ -471,11 +471,20 @@ class Food:
 	def glutenReplace(self):
 		for item in self.recipe["ingredients"]:
 			if self.hasGluten(item["item"]):
-				replacer = self.findGlutenReplacer(item["item"])
-				print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
-				item["item"] = replacer
-				item["ingredient"] = replacer
-				item["number"] = self.serving
+				if "bread crumb" in (item["item"]).lower():
+					break
+				elif "lasagna noodle" in (item["item"]).lower():
+					replacer = "Zucchini Ribbons"
+					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
+					item["item"] = replacer
+					item["ingredient"] = replacer
+					item["number"] = self.serving
+				else:
+					replacer = self.findGlutenReplacer(item["item"])
+					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
+					item["item"] = replacer
+					item["ingredient"] = replacer
+					item["number"] = self.serving
 
 	def findGlutenReplacer(self, name):
 		for replacement in self.resource.glutenDict:
@@ -511,12 +520,19 @@ class Food:
 				replacer = str(self.findConversion(item["item"], conversion))
 				replacer = self.alreadyThere(replacer)
 				if replacer == 'String Cheese':
-					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"]*20, " ", "sticks", " ", replacer
-					item["number"] = 20*item["number"]
-					item["measurement"] = "sticks"
+					if "ounce" in (item["item"]).lower():
+						print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"]*1.25, " ", "sticks", " ", replacer
+						item["number"] = 1.25*item["number"]
+						item["measurement"] = "sticks"
+					else:
+						print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"]*1.25, " ", "sticks", " ", replacer
+						item["number"] = 1.25*item["number"]
+						item["measurement"] = "sticks"
 				elif (replacer in "ketchup") or (replacer in "Tabasco sauce"):
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", "bottles", " ", replacer
 					item["measurement"] = "bottles"
+				elif "bread crumb" in (item["item"]).lower():
+					break
 				elif item["number"] != 0:
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
 				else:
