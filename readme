@@ -1,0 +1,4 @@
+In this project we have used only 2 external libraries. 
+To install, use easy_install :
+- easy_install BeautifulSoup
+- easy_install nltk
