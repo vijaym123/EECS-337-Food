@@ -91,13 +91,16 @@ class FoodResources:
 					'Chorizo' : ['sausage', 'bratwurst', 'kielbasa', 'bacon', 'salami', 'pepperoni', 'italian sausage'],
 					'Salsa' : ['hot sauce'],
 					'Corn' : ['broccoli'],
-					'Onion' : ['asparagus'],
-					'Bell Pepper' : ['carrot', 'carrots'],
+					'Potatoes' : ['beets', 'beet', 'roots', 'root vegetables'],
+					'Onion' : ['asparagus', 'spinach'],
+					'Bell Pepper' : ['carrot', 'carrots', 'arugula'],
+					'Tomato' : ['olive', 'olives', 'kalamata olives'],
+					'Avocado' : ['bok choy', 'yao choy', 'gourd', 'gourds'],
 					'Pico de Gallo' : ['sauce'],
 					'Chipotle Mayonaisse' : ['mayonaisse', 'mayo'],
 					'Tortilla' : ['bread', 'white bread', 'pita']}
 
-	mexicanItems = ['carrot', 'carrots', 'broccoli', 'asparagus', 'hot sauce', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'bratwurst', 'kielbasa', 'bacon', 'mayonnaise', 'mayo', 'sauce', 'bread', 'white bread', 'pita', 'sausage', 'salsa', 'ham', 'turkey', 'salami', 'pepperoni', 'italian sausage']
+	mexicanItems = ['bok choy', 'olive', 'kalamata olives', 'olives', 'spinach', 'beet', 'beets', 'gourd', 'gourds', 'roots', 'root vegetables', 'yao choy', 'carrot', 'arugula', 'carrots', 'broccoli', 'asparagus', 'hot sauce', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'bratwurst', 'kielbasa', 'bacon', 'mayonnaise', 'mayo', 'sauce', 'bread', 'white bread', 'pita', 'sausage', 'salsa', 'ham', 'turkey', 'salami', 'pepperoni', 'italian sausage']
 
 	italianDict = {'Parmigiano-Reggiano' : ['parmesan cheese'],
 					'Mozzarella' : ['swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
