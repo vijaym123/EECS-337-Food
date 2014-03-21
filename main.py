@@ -24,7 +24,7 @@ if __name__=="__main__":
 			print "6) Display tools used"
 			print "7) Display Primary Cooking Method"
 			print "8) Transform to Vegetarian"
-			print "9) Transform to Gluten-Free"
+			print "9) Transform to Low gluten"
 			print "10) Transform to Mexican"
 			print "11) Transform to Italian"
 			print "12) Transform to American"

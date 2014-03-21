@@ -208,7 +208,7 @@
                           'measurement': u'( pound )',
                           'number': 6.0,
                           'preparation': ''}],
-            'cooking methods': ['bake', 'roasting', 'carving'],
+            'cooking methods': ['mix', 'bake', 'roasting', 'carving'],
             'ingredients': [{'amount': u'4 teaspoons',
                              'descriptor': '',
                              'ingredient': 'salt',

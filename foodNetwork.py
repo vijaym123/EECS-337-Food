@@ -53,7 +53,7 @@ def getIngredients(link):
 	while items.count('')!=0:
 		items.remove('')
 
-	commonItems = ["salt", "sugar"]
+	commonItems = ["salt", "sugar", "water"]
 	output = []
 	for i in items:
 		t = True
