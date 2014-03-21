@@ -7,7 +7,6 @@ import difflib
 import nltk
 import fractions
 from collections import defaultdict
-import wikipedia
 import string
 
 class FoodResources:
@@ -352,9 +351,9 @@ class Food:
 	def TypeOfPreparation(self, name):
 		return difflib.get_close_matches(name, self.resource.types)
 	
-	def convertToAscii(self,string):
+	def convertToAscii(self,s):
 		output = []
-		for word in string.split(" "):
+		for word in s.split(" "):
 			try :
 				output.append(str(word))
 			except:
