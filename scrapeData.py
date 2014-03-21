@@ -108,7 +108,7 @@ class FoodResources:
 					'Corn' : ['broccoli', 'peas', 'pea', 'greens', 'mixed greens'],
 					'Potatoes' : ['beets', 'beet', 'roots', 'root vegetables', 'turnip', 'turnips', 'watercress'],
 					'Onion' : ['asparagus', 'spinach', 'celery', 'spring onion'],
-					'Lettuce' : ['kale', 'cabbage', 'brussels sprout'],
+					'Lettuce' : ['kale', 'cabbage', 'brussels sprout', 'seaweed', 'sea kale', 'sea beets', 'sea vegetables'],
 					'Bell Pepper' : ['carrot', 'carrots', 'arugula'],
 					'Tomato' : ['olive', 'olives', 'kalamata olives', 'pumpkin', 'pumpkins'],
 					'Avocado' : ['bok choy', 'yao choy', 'pak choy', 'gourd', 'gourds', 'squash', 'melon', 'melons', 'cantelope'],
@@ -117,7 +117,7 @@ class FoodResources:
 					'Chipotle Mayonaisse' : ['mayonaisse', 'mayo'],
 					'Tortilla' : ['bread', 'white bread', 'pita', 'roll', 'rolls', 'dinner rolls',  'scone', 'scones', 'biscuit', 'biscuits']}
 
-	mexicanItems = ['roll', 'rolls', 'dinner rolls', 'scone', 'scones', 'biscuit', 'biscuits', 'bok choy', 'kale', 'greens', 'hummus', 'chickpeas', 'garbanzo beans', 'mixed greens', 'celery', 'brussels sprout', 'cabbage', 'spring onion', 'olive', 'cabbage', 'kalamata olives', 'olives','pea', 'pak choy', 'turnip', 'turnips', 'watercress', 'peas', 'spinach', 'beet', 'beets', 'squash', 'pumpkin', 'pumpkins', 'melons', 'melon', 'cantelope', 'gourd', 'gourds', 'roots', 'root vegetables', 'yao choy', 'carrot', 'arugula', 'carrots', 'broccoli', 'asparagus', 'hot sauce', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'bratwurst', 'kielbasa', 'bacon', 'mayonnaise', 'mayo', 'sauce', 'bread', 'white bread', 'pita', 'sausage', 'salsa', 'ham', 'turkey', 'salami', 'pepperoni', 'italian sausage']
+	mexicanItems = ['roll', 'rolls', 'dinner rolls', 'scone', 'scones', 'biscuit', 'seaweed', 'sea kale', 'sea beets', 'sea vegetables', 'biscuits', 'bok choy', 'kale', 'greens', 'hummus', 'chickpeas', 'garbanzo beans', 'mixed greens', 'celery', 'brussels sprout', 'cabbage', 'spring onion', 'olive', 'cabbage', 'kalamata olives', 'olives','pea', 'pak choy', 'turnip', 'turnips', 'watercress', 'peas', 'spinach', 'beet', 'beets', 'squash', 'pumpkin', 'pumpkins', 'melons', 'melon', 'cantelope', 'gourd', 'gourds', 'roots', 'root vegetables', 'yao choy', 'carrot', 'arugula', 'carrots', 'broccoli', 'asparagus', 'hot sauce', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'bratwurst', 'kielbasa', 'bacon', 'mayonnaise', 'mayo', 'sauce', 'bread', 'white bread', 'pita', 'sausage', 'salsa', 'ham', 'turkey', 'salami', 'pepperoni', 'italian sausage']
 
 	italianDict = {'Parmigiano-Reggiano' : ['parmesan cheese'],
 					'Mozzarella' : ['swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
@@ -131,14 +131,16 @@ class FoodResources:
 					'Artichoke' : ['bok choy', 'pak choy', 'yao choy'],
 					'Onion' : ['leek', 'leeks', 'spring onions'],
 					'Lentils' : ['endives', 'endive'],
-					'Broccoli' : ['cabbage', 'brussels sprouts', 'brussels sprouts']
+					'Broccoli' : ['cabbage', 'brussels sprouts', 'brussels sprouts', 'new zealand cabbage']
 					'Chickpeas' : ['refried beans', 'hummus'],
 					'Kale' : ['orache', 'orach', 'atriplex'],
 					'Thyme' : ['dill'],
 					'Olive oil' : ['vegetable oil', 'oil'],
-					'Ciabatta' : ['roll', 'rolls', 'dinner rolls', 'bread', 'scone', 'scones', 'biscuit', 'biscuits']}
+					'Ciabatta' : ['roll', 'rolls', 'dinner rolls', 'bread', 'scone', 'scones', 'biscuit', 'biscuits'],
+					'Bay Leaves' : ['ginseng', 'ginger', 'star-of-anise', 'garam masala', 'curry powder', 'sambar', 'sambar powder'],
+					'Spinach' : ['seaweed', 'sea vegetables', 'sea beets', 'beets']}
 
-	italianItems = ['squash', 'roll', 'rolls', 'dinner rolls', 'bread', 'scone', 'scones', 'biscuit', 'biscuits', 'orache', 'orach', 'oil', 'vegetable oil', 'dill', 'atripplex', 'melon', 'cabbage', 'brussels sprout', 'brussels sprouts', 'melons', 'leek', 'leeks', 'endive', 'refried beans', 'hummus', 'endives', 'spring onions', 'pumpkin', 'pumpkins', 'cantelope', 'bok choy', 'pak choy', 'yao choy', 'gourd', 'gourds', 'corn', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup', 'sausage', 'chorizo', 'kielbasa', 'bratwurst', 'noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles', 'rice']
+	italianItems = ['squash', 'roll', 'rolls', 'new zealand cabbage', 'seaweed', 'sea vegetables', 'sea beets', 'beets', 'dinner rolls', 'bread', 'ginseng', 'ginger', 'star-of-anise', 'garam masala', 'curry powder', 'sambar', 'sambar powder', 'scone', 'scones', 'biscuit', 'biscuits', 'orache', 'orach', 'oil', 'vegetable oil', 'dill', 'atripplex', 'melon', 'cabbage', 'brussels sprout', 'brussels sprouts', 'melons', 'leek', 'leeks', 'endive', 'refried beans', 'hummus', 'endives', 'spring onions', 'pumpkin', 'pumpkins', 'cantelope', 'bok choy', 'pak choy', 'yao choy', 'gourd', 'gourds', 'corn', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup', 'sausage', 'chorizo', 'kielbasa', 'bratwurst', 'noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles', 'rice']
 
 
 	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict, 'mexican' :mexicanDict, 'italian' :italianDict}
