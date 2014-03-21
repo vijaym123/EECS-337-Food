@@ -392,6 +392,7 @@ class Food:
 					item["item"] = replacer
 					item["ingredient"] = replacer
 					item["number"] = self.serving
+				item["amount"] = str(item["number"]) + " " + item["measurement"]
 
 	def alreadyThere(self, newThing):
 		for item in self.recipe["ingredients"]:
@@ -467,8 +468,7 @@ class Food:
 					print item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["measurement"], " ", replacer
 				item["item"] = replacer
 				item["ingredient"] = replacer
-				item["number"] = self.serving
-				
+			item["amount"] = str(item["number"]) + " " + item["measurement"]
 
 	def findConversion(self, name, dictChoice):
 		for replacement in self.resource.conversionCollections[dictChoice]:
