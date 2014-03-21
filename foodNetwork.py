@@ -6,6 +6,7 @@ import nltk
 from collections import defaultdict
 import re
 import difflib
+from nltk.corpus import stopwords
 
 def getItems(ingredientText):
 	"""
@@ -14,10 +15,13 @@ def getItems(ingredientText):
 	global ingredientsBook
 
 	ingredientText=ingredientText.replace(",","")
+	ingredientText = " ".join([w for w in ingredientText.split(" ") if not w in stopwords.words('english')])
+	
 	tokens = nltk.word_tokenize(ingredientText)
 	tags = nltk.pos_tag(tokens)
 	label = defaultdict(list)
 	label["ingredient"] = ingredientText
+	
 
 	if difflib.get_close_matches(ingredientText, ingredientsBook):
 		label["item"].append(ingredientText)
@@ -28,8 +32,9 @@ def getItems(ingredientText):
 			elif i[1].startswith("RB") or i[1].startswith("VB"):
 				label["preparation"].append(i[0])
 			else :
-				label["item"].append(i[0])
-
+				if i[0] != "taste":
+					label["item"].append(i[0])
+					
 	label["descriptor"] = " ".join(label["descriptor"])
 	label["preparation"] = " ".join(label["preparation"])
 	label["item"] = " ".join(label["item"])

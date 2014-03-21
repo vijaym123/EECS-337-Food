@@ -8,6 +8,7 @@ import nltk
 import fractions
 from collections import defaultdict
 import string
+from nltk.corpus import stopwords
 
 class FoodResources:
 	meatItems = ["Beef","Bison","Dog","Game","Bear","Venison","Wild Boar","Goat",\
@@ -336,8 +337,11 @@ class Food:
 		amount = number + measurement
 		ingredient = descriptor + preparation + item
 		"""
-		ingredientText=ingredientText.replace(",","")
-
+		ingredientText = ingredientText.replace(",","")
+		print ingredientText
+		ingredientText = " ".join([w for w in ingredientText.split(" ") if not w in stopwords.words('english')])
+		print ingredientText
+		
 		tokens = nltk.word_tokenize(self.convertToAscii(ingredientText))
 		tags = nltk.pos_tag(tokens)
 		label = defaultdict(list)
@@ -352,7 +356,8 @@ class Food:
 				elif i[1].startswith("RB") or i[1].startswith("VB"):
 					label["preparation"].append(i[0])
 				else :
-					label["item"].append(i[0])
+					if i[0] != "taste":
+						label["item"].append(i[0])
 
 		label["descriptor"] = " ".join(label["descriptor"])
 		label["preparation"] = " ".join(label["preparation"])
@@ -378,7 +383,7 @@ class Food:
 				if i.find('span',{"class":"ingredient-amount"}):
 					iterator.append((i.find('span',{"class":"ingredient-name"}).text,i.find('span',{"class":"ingredient-amount"}).text))
 				else :
-					iterator.append((i.find('span',{"class":"ingredient-name"}).text,""))
+					iterator.append((i.find('span',{"class":"ingredient-name"}).text,"taste"))
 		return [self.labelIngredients(item[0],item[1]) for item in iterator]
 
 	def TypeOfPreparation(self, name):

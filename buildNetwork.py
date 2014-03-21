@@ -1,14 +1,18 @@
 import networkx as nx
 import json
 import itertools
-
+import random
 if __name__ == "__main__":
-	filename = "breakfast-and-brunch.data"
+	filename = "main-dish.data"
 	f = open(filename,'r')
 	data = json.loads(f.read())
 	f.close()
 	G = nx.Graph()
-	for item1,item2 in itertools.combinations(data.keys()[:50],2):
-		if set(data[item1]['recipe']).intersection(set(data[item2]['recipe'])):
+	choose = random.sample(data.keys(),100)
+	for item1,item2 in itertools.combinations(choose,2):
+		if len(set(data[item1]['recipe']).intersection(set(data[item2]['recipe'])))>2:
 			G.add_edge(item1,item2)
-	nx.write_gml(G,"breakfast-and-brunch.gml")
+		else :
+			G.add_node(item1)
+			G.add_node(item2)
+	nx.write_gml(G,"main-dish.gml")

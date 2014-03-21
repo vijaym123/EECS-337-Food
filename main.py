@@ -40,19 +40,19 @@ if __name__=="__main__":
 			if choice == '1':
 				print "Ingredients are : "
 				for i in range(len(food.recipe['ingredients'])):
-					print i+1,")", food.recipe['ingredients'][i]['ingredient']
+					print i+1,")", food.recipe['ingredients'][i]['item']
 				print "\n"
 
 			elif choice == '2':
 				print "Ingredients with descriptor : "
 				for i in range(len(food.recipe['ingredients'])):
-					print i+1,")", food.recipe['ingredients'][i]['ingredient'], " - descriptor : ", food.recipe['ingredients'][i]['descriptor']
+					print i+1,")", food.recipe['ingredients'][i]['item'], " - descriptor : ", food.recipe['ingredients'][i]['descriptor']
 				print "\n"
 
 			elif choice == '3':
 				print "Ingredients with quantity : "
 				for i in range(len(food.recipe['ingredients'])):
-					print i+1,")", food.recipe['ingredients'][i]['ingredient'], " - quantity : ", food.recipe['ingredients'][i]['amount']
+					print i+1,")", food.recipe['ingredients'][i]['item'], " - quantity : ", food.recipe['ingredients'][i]['amount']
 				print "\n"
 
 			elif choice == '4':
