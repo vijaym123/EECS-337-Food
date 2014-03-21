@@ -458,6 +458,9 @@ class Food:
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"]*20, " ", "sticks", " ", replacer
 					item["number"] = 20*item["number"]
 					item["measurement"] = "sticks"
+				elif (replacer in "ketchup") or (replacer in "Mayonaisse") or (replacer in "Tabasco sauce"):
+					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", "bottles", " ", replacer
+					item["measurement"] = "bottles"
 				elif item["number"] != 0:
 					print item["number"], " ", item["measurement"], " ", item["item"], " --> REPLACE WITH: ", item["number"], " ", item["measurement"], " ", replacer
 				else:
