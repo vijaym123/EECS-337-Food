@@ -543,6 +543,7 @@ class Food:
 			test["preparation"] = item["preparation"]
 			output["ingredients"].append(test)
 		output["cooking method"] = self.getPrimaryMethod(self.getCookingMethods())
+		output["cooking tools"] = self.tools
 		return output
 
 
