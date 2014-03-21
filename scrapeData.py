@@ -91,11 +91,14 @@ class FoodResources:
                             'Instant Mac and Cheese' : ['noodles'],
                             'peanut butter' : ['nuts', 'walnuts', 'almonds', 'peanuts'],
                             'canned fruit' : ['fruit'],
-
                             'canned apples' : ['apples'],
+                            'frozen broccoli' : ['broccoli', 'fresh broccoli'],
+                            'frozen carrots' : ['carrots', 'fresh carrots'],
+                            'frozen peas' : ['peas', 'fresh peas'],
+                            'frozen corn' : ['corn', 'fresh corn']
                             'full-fat milk' : ['low-fat milk', 'non-fat-milk']}
 
-	veryAmericanItems = ['acini di pepe', 'alphabet pasta', 'anelli', 'bucatini', 'campanelle', 'cappelletti', 'casarecce', 'cavatappi', 'cavatelli', 'conchiglie', 'ditalini', 'macaroni', 'farfalle', 'farfalline', 'fideo', 'fusilli', 'gemelli', 'gigli', 'linguine', 'manicotti', 'orecchiette', 'orzo', 'penne', 'mostaccioli', 'penne rigate', 'radiatori', 'ravioli', 'reginette', 'riccioli',  'rigatoni', 'rocchetti', 'rotelle', 'rotini', 'ruote', 'spaghetti', 'tortellini', 'tortiglioni', 'tripolini', 'tubini', 'vermicelli', 'ziti', 'hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
+	veryAmericanItems = ['acini di pepe', 'peas', 'fresh peas', 'corn', 'fresh corn', 'broccoli', 'carrots', 'fresh broccoli', 'fresh carrots', 'alphabet pasta', 'anelli', 'bucatini', 'campanelle', 'cappelletti', 'casarecce', 'cavatappi', 'cavatelli', 'conchiglie', 'ditalini', 'macaroni', 'farfalle', 'farfalline', 'fideo', 'fusilli', 'gemelli', 'gigli', 'linguine', 'manicotti', 'orecchiette', 'orzo', 'penne', 'mostaccioli', 'penne rigate', 'radiatori', 'ravioli', 'reginette', 'riccioli',  'rigatoni', 'rocchetti', 'rotelle', 'rotini', 'ruote', 'spaghetti', 'tortellini', 'tortiglioni', 'tripolini', 'tubini', 'vermicelli', 'ziti', 'hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
 	mexicanDict = {'Pepperjack cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'cheddar', 'cheddar cheese'],
 					'Ground Beef' : ['chicken', 'pork', 'fish', 'ham', 'turkey'],
@@ -123,9 +126,13 @@ class FoodResources:
 					'Risotto' : ['rice'],
 					'Eggplant' : ['squash', 'melon', 'melons', 'pumpkin', 'pumpkins', 'cantelope'],
 					'Tomato' : ['gourd', 'gourds'],
-					'Carrots' : ['corn']}
+					'Carrots' : ['corn'],
+					'Artichoke' : ['bok choy', 'pak choy', 'yao choy'],
+					'Onion' : ['leek', 'leeks', 'spring onions'],
+					'Lentils' : ['endives', 'endive'],
+					'Chickpeas' : ['refried beans', 'hummus']}
 
-	italianItems = ['squash', 'melon', 'melons', 'pumpkin', 'pumpkins', 'cantelope', 'gourd', 'gourds', 'corn', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup', 'sausage', 'chorizo', 'kielbasa', 'bratwurst', 'noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles', 'rice']
+	italianItems = ['squash', 'melon', 'melons', 'leek', 'leeks', 'endive', 'refried beans', 'hummus', 'endives', 'spring onions', 'pumpkin', 'pumpkins', 'cantelope', 'bok choy', 'pak choy', 'yao choy', 'gourd', 'gourds', 'corn', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup', 'sausage', 'chorizo', 'kielbasa', 'bratwurst', 'noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles', 'rice']
 
 
 	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict, 'mexican' :mexicanDict, 'italian' :italianDict}
