@@ -37,10 +37,19 @@ def getItems(ingredientText):
 	# 	print label['descriptor'],"----",label['preparation'],"----",label['ingredient'] 
 	return label["item"]
 
+def convertToAscii(s):
+	output = []
+	for word in s.split(" "):
+		try :
+			output.append(str(word))
+		except:
+			pass
+	return " ".join(output)
+
 def getIngredients(link):
 	page = url.urlopen(str(link))
 	soupBody = BeautifulSoup(page)
-	items = [ getItems(i.text) for i in soupBody.findAll("span",{"class":"ingredient-name"})]
+	items = [getItems(i.text) for i in soupBody.findAll("span",{"class":"ingredient-name"}) if convertToAscii(i.text) != ""]
 	while items.count('')!=0:
 		items.remove('')
 	return items
@@ -56,7 +65,9 @@ def getAllIngredients():
 if __name__ == "__main__":
 	number = 1
 	maxNumber = 30
-	page = url.urlopen("http://allrecipes.com/recipes/breakfast-and-brunch/main.aspx?evt19=1&vm=l&p34=HR_ListView&Page="+str(number))
+	Types = ["breakfast-and-brunch","main-dish"]
+	t = Types[1]
+	page = url.urlopen("http://allrecipes.com/recipes/"+t+"/main.aspx?evt19=1&vm=l&p34=HR_ListView&Page="+str(number))
 	recipeNames = []
 	
 	global ingredientsBook
@@ -67,12 +78,12 @@ if __name__ == "__main__":
 		soupBody = BeautifulSoup(page)
 		recipeNames.extend([ (i.find('a').text, { "url" : i.find('a')["href"], "recipe" : getIngredients(i.find('a')["href"]) }) for i in soupBody.findAll('h3',{"class":"resultTitle"})])
 		number = number + 1
-		page = url.urlopen("http://allrecipes.com/recipes/breakfast-and-brunch/main.aspx?evt19=1&vm=l&p34=HR_ListView&Page="+str(number))
+		page = url.urlopen("http://allrecipes.com/recipes/"+t+"/main.aspx?evt19=1&vm=l&p34=HR_ListView&Page="+str(number))
 		if number >= maxNumber:
 			break
 	data = dict(recipeNames)
 	print data
-	filename = "breakfast-and-brunch.data"
+	filename = t+".data"
 	f = open(filename,"w")
 	f.write(json.dumps(data))
 	f.close()
