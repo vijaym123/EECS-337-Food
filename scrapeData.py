@@ -113,10 +113,11 @@ class FoodResources:
 					'Tomato' : ['olive', 'olives', 'kalamata olives', 'pumpkin', 'pumpkins'],
 					'Avocado' : ['bok choy', 'yao choy', 'pak choy', 'gourd', 'gourds', 'squash', 'melon', 'melons', 'cantelope'],
 					'Pico de Gallo' : ['sauce'],
+					'Guacomole' : ['hummus', 'chickpeas', 'garbanzo beans'],
 					'Chipotle Mayonaisse' : ['mayonaisse', 'mayo'],
 					'Tortilla' : ['bread', 'white bread', 'pita']}
 
-	mexicanItems = ['bok choy', 'kale', 'greens', 'mixed greens', 'celery', 'brussels sprout', 'cabbage', 'spring onion', 'olive', 'cabbage', 'kalamata olives', 'olives','pea', 'pak choy', 'turnip', 'turnips', 'watercress', 'peas', 'spinach', 'beet', 'beets', 'squash', 'pumpkin', 'pumpkins', 'melons', 'melon', 'cantelope', 'gourd', 'gourds', 'roots', 'root vegetables', 'yao choy', 'carrot', 'arugula', 'carrots', 'broccoli', 'asparagus', 'hot sauce', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'bratwurst', 'kielbasa', 'bacon', 'mayonnaise', 'mayo', 'sauce', 'bread', 'white bread', 'pita', 'sausage', 'salsa', 'ham', 'turkey', 'salami', 'pepperoni', 'italian sausage']
+	mexicanItems = ['bok choy', 'kale', 'greens', 'hummus', 'chickpeas', 'garbanzo beans', 'mixed greens', 'celery', 'brussels sprout', 'cabbage', 'spring onion', 'olive', 'cabbage', 'kalamata olives', 'olives','pea', 'pak choy', 'turnip', 'turnips', 'watercress', 'peas', 'spinach', 'beet', 'beets', 'squash', 'pumpkin', 'pumpkins', 'melons', 'melon', 'cantelope', 'gourd', 'gourds', 'roots', 'root vegetables', 'yao choy', 'carrot', 'arugula', 'carrots', 'broccoli', 'asparagus', 'hot sauce', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'bratwurst', 'kielbasa', 'bacon', 'mayonnaise', 'mayo', 'sauce', 'bread', 'white bread', 'pita', 'sausage', 'salsa', 'ham', 'turkey', 'salami', 'pepperoni', 'italian sausage']
 
 	italianDict = {'Parmigiano-Reggiano' : ['parmesan cheese'],
 					'Mozzarella' : ['swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
@@ -130,9 +131,13 @@ class FoodResources:
 					'Artichoke' : ['bok choy', 'pak choy', 'yao choy'],
 					'Onion' : ['leek', 'leeks', 'spring onions'],
 					'Lentils' : ['endives', 'endive'],
-					'Chickpeas' : ['refried beans', 'hummus']}
+					'Broccoli' : ['cabbage', 'brussels sprouts', 'brussels sprouts']
+					'Chickpeas' : ['refried beans', 'hummus'],
+					'Kale' : ['orache', 'orach', 'atriplex'],
+					'Thyme' : ['dill'],
+					'olive oil' : ['vegetable oil', 'oil']}
 
-	italianItems = ['squash', 'melon', 'melons', 'leek', 'leeks', 'endive', 'refried beans', 'hummus', 'endives', 'spring onions', 'pumpkin', 'pumpkins', 'cantelope', 'bok choy', 'pak choy', 'yao choy', 'gourd', 'gourds', 'corn', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup', 'sausage', 'chorizo', 'kielbasa', 'bratwurst', 'noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles', 'rice']
+	italianItems = ['squash', 'orache', 'orach', 'oil', 'vegetable oil', 'dill', 'atripplex', 'melon', 'cabbage', 'brussels sprout', 'brussels sprouts', 'melons', 'leek', 'leeks', 'endive', 'refried beans', 'hummus', 'endives', 'spring onions', 'pumpkin', 'pumpkins', 'cantelope', 'bok choy', 'pak choy', 'yao choy', 'gourd', 'gourds', 'corn', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'Italian Sausage', 'ground beef', 'ketchup', 'sausage', 'chorizo', 'kielbasa', 'bratwurst', 'noodles', 'udon', 'udon noodles', 'ramen', 'ramen noodles', 'lo mein', 'lo mein noodles', 'rice']
 
 
 	conversionCollections = {'american' : americanDict, 'vamerican' : veryAmericanDict, 'mexican' :mexicanDict, 'italian' :italianDict}
