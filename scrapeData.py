@@ -24,7 +24,19 @@ class FoodResources:
 				"Roast", "Bake", "Stir-fry", "Scald", "Chiffonade", "Brown", "Mix", "Sweat", "Smoke", "Blanch", "Canning", \
 				"Boiling", "Mincing", "Braising", "Grill", "Knead", "Barbecue", "Clay pot", "Simmering", "Microwave", "Pan Fry", "Degorg", "Deglaz"]
 	equipments = ['grill', 'knife', 'bowl', 'refridgerator', 'oven', 'microwave', 'frying pan', 'plate', 'cutting board', 'fork', 'spoon', \
-				'blender', 'rolling pin', 'sink', 'freezer', 'baking dish', 'foil', 'griddle', 'skillet', 'dish']
+				'blender', 'rolling pin', 'sink', 'freezer', 'baking dish', 'foil', 'griddle', 'skillet', 'dish', 'apple corer', 'apple cutter' \
+				'baster' 'biscuit cutter', 'bottle opener', 'bread knife', 'browning tray', 'butter curler', 'cheese knife', 'cheesecloth', \
+				'cherry pitter', 'chinoise', 'oclander', 'corkscrew', 'crab cracker', 'dough scraper', 'egg piercer', 'egg poacher', 'egg separator', \
+				'egg slicer', 'egg timer', 'fillet knife', 'fish scaler', 'sifter', 'funnel', 'garlic press', \
+				'grapefruit knife', 'grater', 'ladle', 'lame', 'lemon squeezer', 'lobster fork', 'lobster pick', \
+				'mandoline', 'colander pot', 'measuring jug', 'measuring spoon', 'measuring cup', 'meat grinder', \
+				'meat tenderiser', 'meat thermometer', 'melon baller', 'mezzaluna', 'nutcracker', 'oven glove', \
+				'oven mitt', 'pastry bag', 'pastry brush', 'basting brush', 'pizza shovel', 'peeler', 'pepper mill', \
+				'potato masher', 'pizza cutter', 'pot holder', 'poultry shears', 'ricer', 'roller docker', \
+				'rolling pin', 'salt shaker', 'scales', 'scissors', 'scoop', 'sieve', 'slotted spoon', 'spatula', \
+				'spider', 'tamis', 'tongs', 'whisk', 'wooden spoon', 'zester', 'casserole pan', 'griddle', 'hot plate', \
+				'sauce pan', 'sautee pan', 'stockpot', 'pressure cooker', 'wok', 'wonder pot', 'food processor', \
+				'cookie sheet']
 	measurements = {}
 	types = ["Baked","Baking", "Barbecue","Braise", "Camping", "Fermented", "Fried", "Fry", \
 				"Marinade", "Microwave", "Slow cooker", "Smoked", "Stir fry", "Grill"]
@@ -73,33 +85,35 @@ class FoodResources:
                             'String Cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
                             'Bacon' : ['chicken', 'pork', 'steak', 'fish'],
                             'Mayonaisse' : ['sauce'],
-                            'SpaghettiO\'s' : ['spaghetti', 'Acini di Pepe', 'Alphabet Pasta', 'Anelli', 'Bucatini', 'Campanelle', 'Cappelletti', 'Casarecce', 'Cavatappi', 'Cavatelli', 'Conchiglie', 'Ditalini', 'Macaroni', 'Farfalle', 'Farfalline', 'Fideo', 'Fusilli', 'Gemelli', 'Gigli', 'Linguine', 'Manicotti', 'Orecchiette', 'Orzo', 'Penne', 'Mostaccioli', 'Penne Rigate', 'Penne', 'Radiatori', 'Ravioli', 'Reginette', 'Riccioli',  'Rigatoni', 'Rocchetti', 'Rotelle', 'Rotini', 'Ruote', 'Spaghetti', 'Tortellini', 'Tortiglioni', 'Tripolini', 'Tubini', 'Vermicelli', 'Ziti'],
+                            'SpaghettiO\'s' : ['spaghetti', 'acini di pepe', 'alphabet pasta', 'anelli', 'bucatini', 'campanelle', 'cappelletti', 'casarecce', 'cavatappi', 'cavatelli', 'conchiglie', 'ditalini', 'macaroni', 'farfalle', 'farfalline', 'fideo', 'fusilli', 'gemelli', 'gigli', 'linguine', 'manicotti', 'orecchiette', 'orzo', 'penne', 'mostaccioli', 'penne rigate', 'radiatori', 'ravioli', 'reginette', 'riccioli',  'rigatoni', 'rocchetti', 'rotelle', 'rotini', 'ruote', 'spaghetti', 'tortellini', 'tortiglioni', 'tripolini', 'tubini', 'vermicelli', 'ziti'],
                             'hot dog bun' : ['bread loaf', 'croissant'],
                             'hamburger bun' : ['bagel'],
                             'Instant Mac and Cheese' : ['noodles'],
                             'peanut butter' : ['nuts', 'walnuts', 'almonds', 'peanuts'],
                             'canned fruit' : ['fruit'],
+
                             'canned apples' : ['apples'],
                             'full-fat milk' : ['low-fat milk', 'non-fat-milk']}
 
-	veryAmericanItems = ['Acini di Pepe', 'Alphabet Pasta', 'Anelli', 'Bucatini', 'Campanelle', 'Cappelletti', 'Casarecce', 'Cavatappi', 'Cavatelli', 'Conchiglie', 'Ditalini', 'Macaroni', 'Farfalle', 'Farfalline', 'Fideo', 'Fusilli', 'Gemelli', 'Gigli', 'Linguine', 'Manicotti', 'Orecchiette', 'Orzo', 'Penne', 'Mostaccioli', 'Penne Rigate', 'Penne', 'Radiatori', 'Ravioli', 'Reginette', 'Riccioli',  'Rigatoni', 'Rocchetti', 'Rotelle', 'Rotini', 'Ruote', 'Spaghetti', 'Tortellini', 'Tortiglioni', 'Tripolini', 'Tubini', 'Vermicelli', 'Ziti', 'hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
+	veryAmericanItems = ['acini di pepe', 'alphabet pasta', 'anelli', 'bucatini', 'campanelle', 'cappelletti', 'casarecce', 'cavatappi', 'cavatelli', 'conchiglie', 'ditalini', 'macaroni', 'farfalle', 'farfalline', 'fideo', 'fusilli', 'gemelli', 'gigli', 'linguine', 'manicotti', 'orecchiette', 'orzo', 'penne', 'mostaccioli', 'penne rigate', 'radiatori', 'ravioli', 'reginette', 'riccioli',  'rigatoni', 'rocchetti', 'rotelle', 'rotini', 'ruote', 'spaghetti', 'tortellini', 'tortiglioni', 'tripolini', 'tubini', 'vermicelli', 'ziti', 'hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
 	mexicanDict = {'Pepperjack cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'cheddar', 'cheddar cheese'],
 					'Ground Beef' : ['chicken', 'pork', 'fish', 'ham', 'turkey'],
 					'Carne Asada' : ['steak'],
 					'Chorizo' : ['sausage', 'bratwurst', 'kielbasa', 'bacon', 'salami', 'pepperoni', 'italian sausage'],
 					'Salsa' : ['hot sauce'],
-					'Corn' : ['broccoli'],
-					'Potatoes' : ['beets', 'beet', 'roots', 'root vegetables'],
-					'Onion' : ['asparagus', 'spinach'],
+					'Corn' : ['broccoli', 'peas', 'pea', 'greens', 'mixed greens'],
+					'Potatoes' : ['beets', 'beet', 'roots', 'root vegetables', 'turnip', 'turnips', 'watercress'],
+					'Onion' : ['asparagus', 'spinach', 'celery', 'spring onion'],
+					'Lettuce' : ['kale', 'cabbage', 'brussels sprout'],
 					'Bell Pepper' : ['carrot', 'carrots', 'arugula'],
-					'Tomato' : ['olive', 'olives', 'kalamata olives'],
-					'Avocado' : ['bok choy', 'yao choy', 'gourd', 'gourds'],
+					'Tomato' : ['olive', 'olives', 'kalamata olives', 'pumpkin', 'pumpkins'],
+					'Avocado' : ['bok choy', 'yao choy', 'pak choy', 'gourd', 'gourds', 'squash', 'melon', 'melons', 'cantelope'],
 					'Pico de Gallo' : ['sauce'],
 					'Chipotle Mayonaisse' : ['mayonaisse', 'mayo'],
 					'Tortilla' : ['bread', 'white bread', 'pita']}
 
-	mexicanItems = ['bok choy', 'olive', 'kalamata olives', 'olives', 'spinach', 'beet', 'beets', 'gourd', 'gourds', 'roots', 'root vegetables', 'yao choy', 'carrot', 'arugula', 'carrots', 'broccoli', 'asparagus', 'hot sauce', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'bratwurst', 'kielbasa', 'bacon', 'mayonnaise', 'mayo', 'sauce', 'bread', 'white bread', 'pita', 'sausage', 'salsa', 'ham', 'turkey', 'salami', 'pepperoni', 'italian sausage']
+	mexicanItems = ['bok choy', 'kale', 'greens', 'mixed greens', 'celery', 'brussels sprout', 'cabbage', 'spring onion', 'olive', 'cabbage', 'kalamata olives', 'olives','pea', 'pak choy', 'turnip', 'turnips', 'watercress', 'peas', 'spinach', 'beet', 'beets', 'squash', 'pumpkin', 'pumpkins', 'melons', 'melon', 'cantelope', 'gourd', 'gourds', 'roots', 'root vegetables', 'yao choy', 'carrot', 'arugula', 'carrots', 'broccoli', 'asparagus', 'hot sauce', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'cheddar cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'bratwurst', 'kielbasa', 'bacon', 'mayonnaise', 'mayo', 'sauce', 'bread', 'white bread', 'pita', 'sausage', 'salsa', 'ham', 'turkey', 'salami', 'pepperoni', 'italian sausage']
 
 	italianDict = {'Parmigiano-Reggiano' : ['parmesan cheese'],
 					'Mozzarella' : ['swiss cheese', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
