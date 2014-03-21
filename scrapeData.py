@@ -79,7 +79,8 @@ class FoodResources:
 
 	americanItems = ['pasta', 'noodles', 'hot sauce', 'tomato sauce', 'asparagus', 'greens', 'green vegetables', 'potatoes', 'root vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish']
 
-	veryAmericanDict = {'American Fries' : ['potatoes', 'potato', 'vegetable', 'vegetables'],
+	veryAmericanDict = {'Grease' : ['vegetable oil'],
+                            'American Fries' : ['potatoes', 'potato', 'vegetable', 'vegetables'],
                             'ketchup' : ['tomatoes', 'tomato'],
                             'mustard' : ['hot sauce'],
                             'String Cheese' : ['cheese', 'cheddar', 'cheddar cheese', 'feta', 'feta cheese', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu'],
@@ -95,10 +96,10 @@ class FoodResources:
                             'frozen broccoli' : ['broccoli', 'fresh broccoli'],
                             'frozen carrots' : ['carrots', 'fresh carrots'],
                             'frozen peas' : ['peas', 'fresh peas'],
-                            'frozen corn' : ['corn', 'fresh corn']
+                            'frozen corn' : ['corn', 'fresh corn'],
                             'full-fat milk' : ['low-fat milk', 'non-fat-milk']}
 
-	veryAmericanItems = ['cheese', 'cheddar', 'cheddar cheese', 'feta', 'feta cheese', 'acini di pepe', 'peas', 'fresh peas', 'corn', 'fresh corn', 'broccoli', 'carrots', 'fresh broccoli', 'fresh carrots', 'alphabet pasta', 'anelli', 'bucatini', 'campanelle', 'cappelletti', 'casarecce', 'cavatappi', 'cavatelli', 'conchiglie', 'ditalini', 'macaroni', 'farfalle', 'farfalline', 'fideo', 'fusilli', 'gemelli', 'gigli', 'linguine', 'manicotti', 'orecchiette', 'orzo', 'penne', 'mostaccioli', 'penne rigate', 'radiatori', 'ravioli', 'reginette', 'riccioli',  'rigatoni', 'rocchetti', 'rotelle', 'rotini', 'ruote', 'spaghetti', 'tortellini', 'tortiglioni', 'tripolini', 'tubini', 'vermicelli', 'ziti', 'hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
+	veryAmericanItems = ['vegetable oil', 'cheese', 'cheddar', 'cheddar cheese', 'feta', 'feta cheese', 'acini di pepe', 'peas', 'fresh peas', 'corn', 'fresh corn', 'broccoli', 'carrots', 'fresh broccoli', 'fresh carrots', 'alphabet pasta', 'anelli', 'bucatini', 'campanelle', 'cappelletti', 'casarecce', 'cavatappi', 'cavatelli', 'conchiglie', 'ditalini', 'macaroni', 'farfalle', 'farfalline', 'fideo', 'fusilli', 'gemelli', 'gigli', 'linguine', 'manicotti', 'orecchiette', 'orzo', 'penne', 'mostaccioli', 'penne rigate', 'radiatori', 'ravioli', 'reginette', 'riccioli',  'rigatoni', 'rocchetti', 'rotelle', 'rotini', 'ruote', 'spaghetti', 'tortellini', 'tortiglioni', 'tripolini', 'tubini', 'vermicelli', 'ziti', 'hot sauce', 'non-fat milk', 'low-fat milk', 'apples', 'fruit', 'walnuts', 'almonds', 'peanuts', 'nuts', 'noodles', 'potato', 'tomato', 'vegetable', 'tomatoes', 'bagel', 'croissant', 'bread loaf', 'spaghetti', 'potatoes', 'vegetables', 'parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'chicken', 'pork', 'steak', 'fish', 'sauce', 'Mayonaisse']
 
 	mexicanDict = {'Pepperjack cheese' : ['parmesan cheese', 'parmigiano-reggiano', 'swiss cheese', 'mozzarella cheese', 'mozzarella', 'manchego cheese', 'manchego', 'monterrey jack cheese', 'monterrey jack', 'gouda cheese', 'gouda', 'bleu cheese', 'bleu', 'cheddar', 'cheddar cheese'],
 					'Ground Beef' : ['chicken', 'pork', 'fish', 'ham', 'turkey'],
@@ -131,7 +132,7 @@ class FoodResources:
 					'Artichoke' : ['bok choy', 'pak choy', 'yao choy'],
 					'Onion' : ['leek', 'leeks', 'spring onions'],
 					'Lentils' : ['endives', 'endive'],
-					'Broccoli' : ['cabbage', 'brussels sprouts', 'brussels sprouts', 'new zealand cabbage']
+					'Broccoli' : ['cabbage', 'brussels sprouts', 'brussels sprouts', 'new zealand cabbage'],
 					'Chickpeas' : ['refried beans', 'hummus'],
 					'Kale' : ['orache', 'orach', 'atriplex'],
 					'Thyme' : ['dill'],
