@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 def outputRecipie(link):
 	output = {}
+	food = None
 	food = scrapeData.Food(link)
 	output["ingredients"] = copy.deepcopy(food.recipe['ingredients'])
 	output["tools"] = copy.deepcopy(food.tools)

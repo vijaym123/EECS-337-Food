@@ -34,7 +34,7 @@ def getItems(ingredientText):
 	label["preparation"] = " ".join(label["preparation"])
 	label["item"] = " ".join(label["item"])
 	# if label["item"] == '':
-	# 	print label['descriptor'],"----",label['preparation'],"----",label['ingredient'] 
+	# 	print label['descriptor'],"----",label['preparation'],"----",label['ingredient']
 	return label["item"]
 
 def convertToAscii(s):
@@ -52,6 +52,18 @@ def getIngredients(link):
 	items = [getItems(i.text) for i in soupBody.findAll("span",{"class":"ingredient-name"}) if convertToAscii(i.text) != ""]
 	while items.count('')!=0:
 		items.remove('')
+
+	commonItems = ["salt", "sugar"]
+	output = []
+	for i in items:
+		t = True
+		for c in commonItems:
+			if not(c in i):
+				t = False
+				break
+		if t:
+			output.append(i)
+	print output
 	return items
 
 def getAllIngredients():
