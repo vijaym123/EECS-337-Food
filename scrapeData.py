@@ -338,9 +338,7 @@ class Food:
 		ingredient = descriptor + preparation + item
 		"""
 		ingredientText = ingredientText.replace(",","")
-		print ingredientText
 		ingredientText = " ".join([w for w in ingredientText.split(" ") if not w in stopwords.words('english')])
-		print ingredientText
 		
 		tokens = nltk.word_tokenize(self.convertToAscii(ingredientText))
 		tags = nltk.pos_tag(tokens)
