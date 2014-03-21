@@ -40,7 +40,7 @@ def getItems(ingredientText):
 def getIngredients(link):
 	page = url.urlopen(str(link))
 	soupBody = BeautifulSoup(page)
-	items = [ getItems(i.text) for i in soupBody.findAll("span",{"id":"lblIngName"})]
+	items = [ getItems(i.text) for i in soupBody.findAll("span",{"class":"ingredient-name"})]
 	while items.count('')!=0:
 		items.remove('')
 	return items

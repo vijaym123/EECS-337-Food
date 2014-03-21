@@ -4,7 +4,6 @@ from pprint import pprint
 if __name__=="__main__":
 	stayInLoop = True
 	while stayInLoop == True:
-
 		url = raw_input("Enter the all-recipe URL : ")
 		try :
 			name = url.split('/')[4]
